@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Transactify Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-slideIn {
+      animation: slideIn 1s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow-md fixed w-full z-10 top-0">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-blue-500">TestTransactify</a>
+      <ul class="hidden md:flex space-x-8">
+        <li><a href="#test-features" class="text-gray-600 hover:text-blue-500">Features</a></li>
+        <li><a href="#test-about" class="text-gray-600 hover:text-blue-500">About</a></li>
+        <li><a href="#test-contact" class="text-gray-600 hover:text-blue-500">Contact</a></li>
+      </ul>
+      <div class="md:hidden">
+        <button id="test-mobile-menu" class="text-gray-600 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="bg-blue-500 text-white h-screen flex items-center justify-center text-center animate-slideIn">
+    <div>
+      <h1 class="text-4xl font-bold">Welcome to Test Transactify</h1>
+      <p class="text-lg">Test Page for a Payment Solution Platform</p>
+      <a href="#test-features" class="bg-white text-blue-500 px-6 py-3 rounded-full text-lg hover:bg-blue-100 mt-6 inline-block">Learn More</a>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section id="test-features" class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center mb-8">Our Features</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <h3 class="text-xl font-semibold mb-2">Speed</h3>
+        <p>Instant transactions to keep things moving.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <h3 class="text-xl font-semibold mb-2">Security</h3>
+        <p>Top security features for worry-free payments.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <h3 class="text-xl font-semibold mb-2">Zero Fees</h3>
+        <p>No hidden charges on your transactions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2024 Test Transactify. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const testMenuButton = document.getElementById('test-mobile-menu');
+    const testNavMenu = document.querySelector('nav ul');
+    testMenuButton.addEventListener('click', () => {
+      testNavMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
