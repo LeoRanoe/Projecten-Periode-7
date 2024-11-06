@@ -4,32 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sma Tori</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-gray-200 font-sans">
+<style>
+  nav {
+    font-family: 'Jolly Lodger', cursive;
+  }
+  footer h2 {
+    font-family: 'Jolly Lodger', cursive;
+  }
+
+  /* Green line underline for nav links */
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #10b981;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  .shadow-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.941);
+}
+
+</style>
+<body class="bg-gray-900 text-gray-200 font-sans bg-cover bg-center bg-no-repeat" style="background-image: url('/images/LandingPageBG.jpg'); min-height: 100vh;">
   <!-- Navigation Bar -->
   <nav class="flex justify-between items-center p-6">
-    <div class="text-2xl font-bold text-green-500">Sma Tori</div>
-    <ul class="hidden md:flex space-x-8">
-      <li><a href="#home" class="hover:text-green-500">Home</a></li>
-      <li><a href="#stories" class="hover:text-green-500">Stories</a></li>
-      <li><a href="#about" class="hover:text-green-500">About</a></li>
-      <li><a href="#contact" class="hover:text-green-500">Contact</a></li>
+    <div class="text-5xl font-bold text-green-500">Sma Tori</div>
+    <ul class="text-2xl hidden md:flex space-x-8">
+      <li><a href="#home" class="nav-link hover:text-green-500">Home</a></li>
+      <li><a href="#stories" class="nav-link hover:text-green-500">Stories</a></li>
+      <li><a href="#about" class="nav-link hover:text-green-500">About</a></li>
+      <li><a href="#contact" class="nav-link hover:text-green-500">Contact</a></li>
     </ul>
-    <button class="md:hidden text-gray-200 focus:outline-none">
+    <!-- Mobile Hamburger Button -->
+    <button class="md:hidden text-gray-200 focus:outline-none" id="hamburger-menu">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
       </svg>
     </button>
   </nav>
 
+  <!-- Mobile Menu (Initially Hidden) -->
+  <ul class="md:hidden flex flex-col space-y-4 p-4 bg-gray-800 text-gray-400 absolute top-20 left-0 right-0 transform translate-x-full transition-transform" id="mobile-menu">
+    <li><a href="#home" class="hover:text-green-500">Home</a></li>
+    <li><a href="#stories" class="hover:text-green-500">Stories</a></li>
+    <li><a href="#about" class="hover:text-green-500">About</a></li>
+    <li><a href="#contact" class="hover:text-green-500">Contact</a></li>
+  </ul>
+
   <!-- Main Section -->
   <main class="flex flex-col md:flex-row items-center justify-between px-6 md:px-12 py-12">
     <!-- Left Text Section -->
     <div class="md:w-1/2 space-y-6">
-      <h1 class="text-4xl md:text-5xl font-bold">Welkom to <span class="text-green-500">Sma Tori</span></h1>
-      <p class="text-gray-400">
-        Roti Bara Chutney alles mix max, grote bakabana met pindasambel en aardappel met kip. Op wie ga jij stemmen Roti Bara Chutney alles mix max, grote bakabana met pindasambel en aardappel met kip. Op wie ga jij stemmen ?????
+      <h1 class="text-4xl md:text 2xl font-bold  text-green-100" style="font-family: 'Libre Baskerville', serif;">Welkom to</h1>
+      <h1 class="text-9xl font-bold text-green-400" style="font-family: 'Jolly Lodger', cursive;">Sma Tori</h1>
+      <p class="text-white shadow-text">
+        Roti Bara Chutney alles mix max, grote bakabana met pindasambel en aardappel met kip. Op wie ga jij stemmen Roti Bara Chutney alles mix max, grote bakabana met pindasambel en aardappel met kip. Op wie ga jij stemmen ????? 
+      </p>
+      
+        Roti Bara Chutney alles mix max, grote bakabana met pindasambel en aardappel met kip. Op wie ga jij stemmen Roti Bara Chutney alles mix max, grote bakabana met pindasambel en aardappel met kip. Op wie ga jij stemmen ????? 
       </p>
       <button class="px-6 py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600 transition">
         Lees nu
@@ -38,58 +86,62 @@
 
     <!-- Right Image Section -->
     <div class="md:w-1/2 flex justify-center relative">
-      <!-- Add your custom images here -->
       <img src="/images/Ghost1.png" alt="Couch with people and ghosts" class="max-w-full h-auto">
     </div>
   </main>
+
   <!-- Footer Section -->
   <footer class="bg-gray-800 text-gray-400 py-8 relative overflow-hidden">
-      <!-- Spider Web Background in the Corner -->
-   <div class="absolute top-0 right-0 h-80 w-80 bg-no-repeat bg-contain" style="background-image: url('/images/spiderweb1.png'); opacity:1;"></div>
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
-      <!-- Logo and Links -->
-      <div class="flex flex-col items-center md:items-start space-y-4">
-        <h2 class="text-2xl font-bold text-white">Sma Tori</h2>
-        <div class="h-1 w-8 bg-gray-500 md:hidden"></div> <!-- Divider for mobile -->
-        <ul class="space-y-2 text-center md:text-left">
-          <li><a href="#about" class="hover:text-white">About</a></li>
-          <li><a href="#contact" class="hover:text-white">Contact</a></li>
-          <li><a href="#affiliates" class="hover:text-white">Affiliates</a></li>
-          <li><a href="#resources" class="hover:text-white">Resources</a></li>
-        </ul>
-      </div>
-  
-      <!-- Contact Information -->
-      <div class="flex flex-col items-center md:items-end space-y-4">
-        <div class="flex space-x-4">
-          <!-- Social Media Icons -->
-          <a href="#" class="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h-2v2h2v7h2v-7h2v-2h-2V7c0-.552.448-1 1-1h1V4h-2c-1.654 0-3 1.346-3 3v2z"/>
-            </svg>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm2-8h-4v-1c0-.265.105-.52.293-.707S10.735 10 11 10h1v-2h-1c-.552 0-1 .448-1 1v3h-1v2h1v3h2v-3h1v-2z"/>
-            </svg>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 4H4c-1.104 0-2 .896-2 2v12c0 1.104.896 2 2 2h16c1.104 0 2-.896 2-2V6c0-1.104-.896-2-2-2zM4 18V6h16l.002 12H4zm8-10c-2.209 0-4 1.791-4 4s1.791 4 4 4 4-1.791 4-4-1.791-4-4-4zM8 12c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4z"/>
-            </svg>
-          </a>
+    <div class="absolute top-0 right-0 h-80 w-80 bg-no-repeat bg-contain" style="background-image: url('/images/spiderweb1.png'); opacity: 1;"></div>
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0 w-full">
+        <!-- Logo and Links -->
+        <div class="flex flex-col md:flex-row items-center md:items-start w-full">
+            <h2 class="text-4xl font-bold text-white text-center md:text-left md:mr-6">Sma Tori</h2>
+            <div class="hidden md:block w-1 bg-gray-500 h-full mx-4"></div>
+            <ul class="space-y-2 text-center md:text-left">
+                <li><a href="#about" class="hover:text-white">About</a></li>
+                <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                <li><a href="#affiliates" class="hover:text-white">Affiliates</a></li>
+                <li><a href="#resources" class="hover:text-white">Resources</a></li>
+            </ul>
         </div>
-        <p class="text-gray-400 text-center md:text-right">
-          Support: <a href="mailto:sopprop81@gmail.com" class="hover:text-white">sopprop81@gmail.com</a><br>
-          <span>+597 860-6579</span>
-        </p>
-      </div>
+
+        <!-- Contact Information -->
+        <div class="flex flex-col items-center md:items-end space-y-4">
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <!-- Social Media Icons -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h-2v2h2v7h2v-7h2v-2h-2V7c0-.552.448-1 1-1h1V4h-2c-1.654 0-3 1.346-3 3v2z"/>
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.104 0-2 .896-2 2v12c0 1.104.896 2 2 2h16c1.104 0 2-.896 2-2V6c0-1.104-.896-2-2-2zM4 18V6h16l.002 12H4zm8-4h4v-2h-4v2zM4 14h4"/>
+                    </svg>
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.104 0-2 .896-2 2v12c0 1.104.896 2 2 2h16c1.104 0 2-.896 2-2V6c0-1.104-.896-2-2-2zM4 18V6h16l.002 12H4zm8-4h4v-2h-4v2zM4 14h4"/>
+                    </svg>  
+                </a>
+            </div>
+        </div>
     </div>
-  
-    <!-- Bottom Text -->
-    <div class="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500">
-      ©2024 De vliegende reporters. Alle rechten voorbehouden.
-    </div>
-  </footer>  
+  </footer>
+
+  <script>
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerMenu.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('translate-x-full')) {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+      } else {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+      }
+    });
+  </script>
 </body>
 </html>
