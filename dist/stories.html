@@ -3,82 +3,240 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Transactify Page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Sma Tori</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Libre+Baskerville&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    @keyframes slideIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    nav {
+      font-family: 'Jolly Lodger', cursive;
     }
-    .animate-slideIn {
-      animation: slideIn 1s ease-out;
+
+    /* Green line underline for nav links */
+    .nav-link {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .bat {
+      position: absolute;
+      width: 40px;
+      height: 20px;
+      opacity: 0;
+      transform: scale(0.5) rotate(45deg);
+      animation: fly 6s ease-in-out infinite;
+    }
+
+    .bat1 { animation-delay: 0s; top: 20%; left: -50px; }
+    .bat2 { animation-delay: 1s; top: 30%; left: -60px; transform: scale(0.7); }
+    .bat3 { animation-delay: 2s; top: 40%; left: -70px; transform: scale(0.6); }
+    .bat4 { animation-delay: 3s; top: 10%; left: -80px; transform: scale(0.5); }
+    .bat5 { animation-delay: 4s; top: 50%; left: -90px; transform: scale(0.8); }
+    .bat6 { animation-delay: 5s; top: 60%; left: -100px; transform: scale(0.6); }
+    .bat7 { animation-delay: 2.5s; top: 15%; left: -120px; transform: scale(0.9); }
+    .bat8 { animation-delay: 3.5s; top: 35%; left: -130px; transform: scale(0.7); }
+    .bat9 { animation-delay: 4.5s; top: 25%; left: -140px; transform: scale(0.5); }
+    .bat10 { animation-delay: 5.5s; top: 55%; left: -150px; transform: scale(0.8); }
+
+    @keyframes fly {
+      0% { transform: translateX(0) translateY(0); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateX(100vw) translateY(-50px); opacity: 0; }
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #10b981;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .footer-link {
+      font-family: 'Jolly Lodger', cursive;
+    }
+
+    .footer-link {
+      font-family: 'Jolly Lodger', cursive;
     }
   </style>
 </head>
-<body class="bg-gray-100">
 
-  <!-- Navigation Bar -->
-  <nav class="bg-white shadow-md fixed w-full z-10 top-0">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold text-blue-500">TestTransactify</a>
-      <ul class="hidden md:flex space-x-8">
-        <li><a href="#test-features" class="text-gray-600 hover:text-blue-500">Features</a></li>
-        <li><a href="#test-about" class="text-gray-600 hover:text-blue-500">About</a></li>
-        <li><a href="#test-contact" class="text-gray-600 hover:text-blue-500">Contact</a></li>
-      </ul>
-      <div class="md:hidden">
-        <button id="test-mobile-menu" class="text-gray-600 focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="bg-blue-500 text-white h-screen flex items-center justify-center text-center animate-slideIn">
-    <div>
-      <h1 class="text-4xl font-bold">Welcome to Test Transactify</h1>
-      <p class="text-lg">Test Page for a Payment Solution Platform</p>
-      <a href="#test-features" class="bg-white text-blue-500 px-6 py-3 rounded-full text-lg hover:bg-blue-100 mt-6 inline-block">Learn More</a>
-    </div>
-  </header>
-
-  <!-- Features Section -->
-  <section id="test-features" class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-8">Our Features</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded-lg shadow-md text-center">
-        <h3 class="text-xl font-semibold mb-2">Speed</h3>
-        <p>Instant transactions to keep things moving.</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md text-center">
-        <h3 class="text-xl font-semibold mb-2">Security</h3>
-        <p>Top security features for worry-free payments.</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md text-center">
-        <h3 class="text-xl font-semibold mb-2">Zero Fees</h3>
-        <p>No hidden charges on your transactions.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8">
-    <div class="container mx-auto px-4 text-center">
-      <p>© 2024 Test Transactify. All rights reserved.</p>
-    </div>
-  </footer>
-
+<body class="bg-gray-900 text-gray-200 font-sans bg-cover bg-center bg-no-repeat">
+  <audio id="batSound" src="/audio/Bats Flock Squeaks with Chatters - QuickSounds.com.mp3" preload="auto"></audio>
   <script>
-    // Mobile menu toggle
-    const testMenuButton = document.getElementById('test-mobile-menu');
-    const testNavMenu = document.querySelector('nav ul');
-    testMenuButton.addEventListener('click', () => {
-      testNavMenu.classList.toggle('hidden');
+    // Play sound on page load
+    window.addEventListener('load', () => {
+      const batSound = document.getElementById('batSound');
+      batSound.play().catch(error => {
+        console.warn('Autoplay prevented:', error);
+      });
     });
   </script>
 
+  <!-- Flying Bats -->
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat1">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat2">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat3">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat4">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat5">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat6">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat7">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat8">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat9">
+  <img src="/images/bat white.png" alt="Flying Bat" class="bat bat10">
+
+  <!-- Navigation Bar -->
+  <nav class="flex justify-between items-center p-6">
+    <div class="text-5xl font-bold text-green-500">Sma Tori</div>
+    <ul class="text-2xl hidden md:flex space-x-8">
+      <li><a href="/dist/index.html" class="nav-link hover:text-green-500">Home</a></li>
+      <li><a href="/dist/stories.html" class="nav-link hover:text-green-500">Stories</a></li>
+      <li><a href="#about" class="nav-link hover:text-green-500">About</a></li>
+      <li><a href="#contact" class="nav-link hover:text-green-500">Contact</a></li>
+    </ul>
+    <button class="md:hidden text-gray-200 focus:outline-none" id="hamburger-menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu (Initially Hidden) -->
+  <ul class="md:hidden flex flex-col space-y-4 p-4 bg-gray-800 text-gray-400 absolute top-20 left-0 right-0 transform translate-x-full transition-transform" id="mobile-menu">
+    <li><a href="/dist/index.html" class="hover:text-green-500">Home</a></li>
+    <li><a href="/dist/stories.html" class="hover:text-green-500">Stories</a></li>
+    <li><a href="#about" class="hover:text-green-500">About</a></li>
+    <li><a href="#contact" class="hover:text-green-500">Contact</a></li>
+  </ul>
+ <!-- Genre Filter -->
+  <div id="genre-filter" class="mb-6 ml-6">
+    <label for="filter-genre" class="text-green-500  font-semibold" style="font-family: 'Libre Baskerville', serif;">Genre:</label>
+    <select id="filter-genre" class="p-1 w-32 bg-gray-800 text-white rounded-md mt-2 text-sm">
+      <option value="All">All</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Non-fiction">Non-fiction</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Drama">Drama</option>
+      <option value="Horror">Horror</option>
+      <option value="Fantasy">Fantasy</option>
+      <option value="Sci-fi">Sci-fi</option>
+    </select>
+  </div>
+
+  <!-- Story Section -->
+  <section id="stories" class="py-8 px-6">
+    <h2 class="text-4xl text-green-500 font-bold mb-6" style="font-family: 'Libre Baskerville', serif;">Stories</h2>
+    <div class="space-y-8" id="story-list">
+      <!-- Dynamically loaded stories will appear here -->
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const stories = JSON.parse(localStorage.getItem('stories')) || [];
+      displayStories(stories);
+
+      // Genre filter dropdown
+      const filterGenre = document.getElementById('filter-genre');
+      filterGenre.addEventListener('change', function() {
+        const selectedGenre = filterGenre.value;
+        filterStoriesByGenre(selectedGenre, stories);
+      });
+    });
+
+    // Display stories
+    function displayStories(stories) {
+      const storyListContainer = document.getElementById('story-list');
+      storyListContainer.innerHTML = '';  // Clear the list before rendering
+
+      stories.forEach((story) => {
+        const storyElement = document.createElement('div');
+        storyElement.classList.add('genre-section');
+        storyElement.innerHTML = `
+          <h3 class="text-3xl text-green-500 font-semibold mb-4" style="font-family: 'Libre Baskerville', serif;">${story.genre}</h3>
+          <div class="stories-list space-y-6">
+            <div class="story p-4 bg-gray-700 rounded-lg shadow-md">
+              <h4 class="text-xl font-semibold text-green-400">${story.title}</h4>
+              <p class="text-white">${story.content}</p>
+            </div>
+          </div>
+        `;
+        storyListContainer.appendChild(storyElement);
+      });
+    }
+
+    // Filter stories based on genre
+    function filterStoriesByGenre(selectedGenre, stories) {
+      let filteredStories;
+      if (selectedGenre === "All") {
+        filteredStories = stories;
+      } else {
+        filteredStories = stories.filter(story => story.genre === selectedGenre);
+      }
+      displayStories(filteredStories);  // Display the filtered stories
+    }
+  </script>
+
+<footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
+  <!-- Spider Web Background Image -->
+  <div class="absolute top-0 right-0 h-80 w-80 bg-no-repeat bg-contain opacity-50" style="background-image: url('/images/spiderweb1.png');"></div>
+
+  <div class="container mx-auto px-6 flex flex-col items-center space-y-6">
+    <!-- Logo in the Center -->
+    <h2 class="text-7xl font-bold text-green-500 text-center" style="font-family: 'Jolly Lodger', cursive;">Sma Tori</h2>
+    
+    <!-- Links Section with Animation -->
+    <div class="flex flex-col md:flex-row justify-center items-center space-x-6 space-y-4 md:space-y-0">
+      <a href="#about" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">About</a>
+      <a href="#contact" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">Contact</a>
+      <a href="#affiliates" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">Affiliates</a>
+      <a href="#resources" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">Resources</a>
+    </div>
+
+    <!-- Social Media Icons with Animation -->
+    <div class="flex space-x-4 mt-4">
+      <a href="#" class="social-icon text-gray-400 hover:text-white transition-transform duration-500 transform hover:scale-125">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h-2v2h2v7h2v-7h2v-2h-2V7c0-.552.448-1 1-1h1V4h-2c-1.654 0-3 1.346-3 3v2z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-icon text-gray-400 hover:text-white transition-transform duration-500 transform hover:scale-125">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-label="Reddit">
+          <path d="M22 11.999c0-1.103-.897-2-2-2-.736 0-1.373.402-1.722.995-1.735-.988-3.934-1.625-6.278-1.682l1.297-5.783 3.811.844c.019.96.803 1.731 1.781 1.731.977 0 1.77-.771 1.78-1.732.011-.961-.782-1.742-1.759-1.742-.706 0-1.314.418-1.599 1.024l-4.456-1.012c-.386-.088-.774.16-.86.547l-1.509 6.727c-2.387.046-4.595.688-6.364 1.731-.354-.591-.987-.996-1.721-.996-1.103 0-2 .897-2 2 0 .736.402 1.373.996 1.722-.074.547-.11 1.111-.11 1.682 0 4.419 4.476 8 10 8s10-3.581 10-8c0-.571-.038-1.135-.11-1.682.593-.348.996-.985.996-1.721zm-15.5 3.181c0-1.105.896-2 2-2 1.104 0 2 .895 2 2s-.896 2-2 2c-1.104 0-2-.895-2-2zm9.812 4.389c-1.343 1.058-3.347 1.429-4.812 1.429-1.465 0-3.469-.371-4.812-1.429-.246-.194-.286-.546-.092-.791.195-.245.546-.286.791-.091 1.05.832 2.75 1.312 4.113 1.312s3.063-.48 4.113-1.312c.245-.195.596-.154.791.091.194.245.154.597-.092.791zm-.312-2.389c-1.104 0-2-.895-2-2s.896-2 2-2c1.104 0 2 .895 2 2s-.896 2-2 2z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-icon text-gray-400 hover:text-white transition-transform duration-500 transform hover:scale-125">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-label="GitHub">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.418 2.868 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.238-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.152-1.11-1.459-1.11-1.459-.908-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.528 2.341 1.087 2.91.832.092-.647.35-1.088.635-1.339-2.22-.253-4.555-1.112-4.555-4.95 0-1.093.39-1.988 1.029-2.687-.103-.253-.446-1.272.098-2.652 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.843c.853.004 1.71.115 2.513.337 1.908-1.295 2.747-1.026 2.747-1.026.546 1.38.203 2.399.1 2.652.641.699 1.029 1.594 1.029 2.687 0 3.848-2.338 4.694-4.566 4.942.359.309.678.922.678 1.856 0 1.338-.012 2.419-.012 2.748 0 .267.18.577.688.48C19.136 20.164 22 16.418 22 12c0-5.52-4.48-10-10-10z"/>
+        </svg>
+      </a>      
+    </div>
+  </div>
+  <p class="text-sm text-gray-500 text-center mt-4">
+    &copy; 2024 Sma Tori. All rights reserved.
+  </p>
+</footer>
+
+  <script>
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerMenu.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('translate-x-full')) {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+      } else {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+      }
+    });
+  </script>
 </body>
 </html>

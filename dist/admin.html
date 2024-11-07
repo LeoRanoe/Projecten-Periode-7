@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sma Tori</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Libre+Baskerville&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans bg-cover bg-center bg-no-repeat">
+<!-- Admin Page -->
+<section id="admin" class="py-8 px-6">
+    <h2 class="text-4xl text-green-500 font-bold mb-6" style="font-family: 'Libre Baskerville', serif;">Admin Panel</h2>
+   <!-- Add Story Form -->
+    <div id="add-story-form" class="bg-gray-700 p-6 rounded-lg shadow-md">
+      <h4 class="text-xl font-semibold text-green-400 mb-4">Add New Story</h4>
+      <input type="text" id="new-story-title" class="p-2 w-full bg-gray-800 text-white rounded-md mb-4" placeholder="Story Title" />
+      <textarea id="new-story-content" class="p-2 w-full bg-gray-800 text-white rounded-md mb-4" placeholder="Story Content"></textarea>
+      
+      <!-- Genre Dropdown -->
+      <select id="new-story-genre" class="p-2 w-full bg-gray-800 text-white rounded-md mb-4">
+        <option value="Fiction">Fiction</option>
+        <option value="Non-fiction">Non-fiction</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Horror">Horror</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Sci-fi">Sci-fi</option>
+      </select>
+      
+      <button id="add-story-btn" class="text-white bg-green-500 px-4 py-2 rounded-md hover:bg-green-600">Add Story</button>
+    </div>
+        <!-- Story List (Editable) -->
+        <div id="story-list" class="mt-8">
+          <h4 class="text-xl font-semibold text-green-400 mb-4">Story List</h4>
+          <ul class="space-y-4">
+            <!-- Dynamic stories will appear here -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Load stories from localStorage
+    function loadStoryList() {
+      const stories = JSON.parse(localStorage.getItem('stories')) || [];
+      const storyListContainer = document.getElementById('story-list').querySelector('ul');
+      storyListContainer.innerHTML = '';  // Clear the list before rendering
+  
+      stories.forEach((story, index) => {
+        const storyItem = document.createElement('li');
+        storyItem.classList.add('bg-gray-700', 'p-4', 'rounded-lg', 'shadow-md');
+        storyItem.innerHTML = `
+          <h4 class="text-xl font-semibold text-green-400">${story.title}</h4>
+          <p class="text-white">${story.content}</p>
+          <p class="text-green-400">Genre: ${story.genre}</p>
+          <button class="delete-story-btn text-red-500 mt-4">Delete</button>
+        `;
+        storyListContainer.appendChild(storyItem);
+  
+        // Set up delete button
+        const deleteButton = storyItem.querySelector('.delete-story-btn');
+        deleteButton.addEventListener('click', function() {
+          deleteStory(index);
+        });
+      });
+    }
+  
+    // Add new story to localStorage
+    document.getElementById('add-story-btn').addEventListener('click', function() {
+      const title = document.getElementById('new-story-title').value;
+      const content = document.getElementById('new-story-content').value;
+      const genre = document.getElementById('new-story-genre').value;
+  
+      if (title && content && genre) {
+        const stories = JSON.parse(localStorage.getItem('stories')) || [];
+        stories.push({ title, content, genre, likes: 0, comments: [] });
+        localStorage.setItem('stories', JSON.stringify(stories));
+        loadStoryList();  // Reload the story list after adding
+      } else {
+        alert('Please fill out all fields!');
+      }
+    });
+  
+    // Delete a story from localStorage
+    function deleteStory(index) {
+      const stories = JSON.parse(localStorage.getItem('stories')) || [];
+      stories.splice(index, 1);
+      localStorage.setItem('stories', JSON.stringify(stories));
+      loadStoryList();  // Reload the story list after deletion
+    }
+  </script>
+</body>
+</html>
