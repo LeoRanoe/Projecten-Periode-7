@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans bg-cover bg-center bg-no-repeat">
-  <audio id="batSound" src="/audio/Bats Flock Squeaks with Chatters - QuickSounds.com.mp3" preload="auto"></audio>
+  <audio id="alien" src="/audio/Classic Alien Arrival Sound Effect.mp3" preload="auto"></audio>
   <script>
     // Play sound on page load
     window.addEventListener('load', () => {
-      const batSound = document.getElementById('batSound');
+      const batSound = document.getElementById('alien');
       batSound.play().catch(error => {
         console.warn('Autoplay prevented:', error);
       });
