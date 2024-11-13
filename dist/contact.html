@@ -1,106 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sma Tori</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Libre+Baskerville&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-<body class="bg-gray-900 text-gray-200 font-sans bg-cover bg-center bg-no-repeat">
- <!-- Flying Bats SVGs -->
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat1">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat2">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat3">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat4">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat5">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat6">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat7">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat8">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat9">
-<img src="/images/bat white.png" alt="Flying Bat" class="bat bat10">
-
-
-
-  <!-- Navigation Bar -->
-  <nav class="flex justify-between items-center p-6">
-    <div class="text-5xl font-bold text-green-500">Sma Tori</div>
-    <ul class="text-2xl hidden md:flex space-x-8">
-      <li><a href="/dist/index.html" class="nav-link hover:text-green-500">Home</a></li>
-      <li><a href="/dist/stories.html" class="nav-link hover:text-green-500">Stories</a></li>
-      <li><a href="/dist/about.html" class="nav-link hover:text-green-500">About</a></li>
-      <li><a href="/dist/contact.html" class="nav-link hover:text-green-500">Contact</a></li>
-    </ul>
-    <!-- Mobile Hamburger Button -->
-    <button class="md:hidden text-gray-200 focus:outline-none" id="hamburger-menu">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
-  </nav>
-
-  <!-- Mobile Menu (Initially Hidden) -->
-  <ul class="md:hidden flex flex-col space-y-4 p-4 bg-gray-800 text-gray-400 absolute top-20 left-0 right-0 transform translate-x-full transition-transform" id="mobile-menu">
-    <li><a href="/dist/index.html" class="hover:text-green-500">Home</a></li>
-    <li><a href="/dist/stories.html" class="hover:text-green-500">Stories</a></li>
-    <li><a href="/dist/about.html" class="hover:text-green-500">About</a></li>
-    <li><a href="/dist/contact.html" class="hover:text-green-500">Contact</a></li>
-  </ul>
-  <footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
-    <!-- Spider Web Background Image -->
-    <div class="absolute top-0 right-0 h-80 w-80 bg-no-repeat bg-contain opacity-50" style="background-image: url('/images/spiderweb1.png');"></div>
-  
-    <div class="container mx-auto px-6 flex flex-col items-center space-y-6">
-      <!-- Logo in the Center -->
-      <h2 class="text-7xl font-bold text-green-500 text-center" style="font-family: 'Jolly Lodger', cursive;">Sma Tori</h2>
-      
-      <!-- Links Section with Animation -->
-      <div class="flex flex-col md:flex-row justify-center items-center space-x-6 space-y-4 md:space-y-0">
-        <a href="#about" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">About</a>
-        <a href="#contact" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">Contact</a>
-        <a href="#affiliates" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">Affiliates</a>
-        <a href="#resources" class="footer-link hover:text-white transition duration-300 transform hover:scale-110">Resources</a>
-      </div>
-  
-      <!-- Social Media Icons with Animation -->
-      <div class="flex space-x-4 mt-4">
-        <a href="#" class="social-icon text-gray-400 hover:text-white transition-transform duration-500 transform hover:scale-125">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h-2v2h2v7h2v-7h2v-2h-2V7c0-.552.448-1 1-1h1V4h-2c-1.654 0-3 1.346-3 3v2z"/>
-          </svg>
-        </a>
-        <a href="#" class="social-icon text-gray-400 hover:text-white transition-transform duration-500 transform hover:scale-125">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-label="Reddit">
-            <path d="M22 11.999c0-1.103-.897-2-2-2-.736 0-1.373.402-1.722.995-1.735-.988-3.934-1.625-6.278-1.682l1.297-5.783 3.811.844c.019.96.803 1.731 1.781 1.731.977 0 1.77-.771 1.78-1.732.011-.961-.782-1.742-1.759-1.742-.706 0-1.314.418-1.599 1.024l-4.456-1.012c-.386-.088-.774.16-.86.547l-1.509 6.727c-2.387.046-4.595.688-6.364 1.731-.354-.591-.987-.996-1.721-.996-1.103 0-2 .897-2 2 0 .736.402 1.373.996 1.722-.074.547-.11 1.111-.11 1.682 0 4.419 4.476 8 10 8s10-3.581 10-8c0-.571-.038-1.135-.11-1.682.593-.348.996-.985.996-1.721zm-15.5 3.181c0-1.105.896-2 2-2 1.104 0 2 .895 2 2s-.896 2-2 2c-1.104 0-2-.895-2-2zm9.812 4.389c-1.343 1.058-3.347 1.429-4.812 1.429-1.465 0-3.469-.371-4.812-1.429-.246-.194-.286-.546-.092-.791.195-.245.546-.286.791-.091 1.05.832 2.75 1.312 4.113 1.312s3.063-.48 4.113-1.312c.245-.195.596-.154.791.091.194.245.154.597-.092.791zm-.312-2.389c-1.104 0-2-.895-2-2s.896-2 2-2c1.104 0 2 .895 2 2s-.896 2-2 2z"/>
-          </svg>
-        </a>
-        <a href="#" class="social-icon text-gray-400 hover:text-white transition-transform duration-500 transform hover:scale-125">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-label="GitHub">
-            <path d="M12 2C6.48 2 2 6.48 2 12c0 4.418 2.868 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.238-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.152-1.11-1.459-1.11-1.459-.908-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.528 2.341 1.087 2.91.832.092-.647.35-1.088.635-1.339-2.22-.253-4.555-1.112-4.555-4.95 0-1.093.39-1.988 1.029-2.687-.103-.253-.446-1.272.098-2.652 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.843c.853.004 1.71.115 2.513.337 1.908-1.295 2.747-1.026 2.747-1.026.546 1.38.203 2.399.1 2.652.641.699 1.029 1.594 1.029 2.687 0 3.848-2.338 4.694-4.566 4.942.359.309.678.922.678 1.856 0 1.338-.012 2.419-.012 2.748 0 .267.18.577.688.48C19.136 20.164 22 16.418 22 12c0-5.52-4.48-10-10-10z"/>
-          </svg>
-        </a>      
-      </div>
-    </div>
-    <p class="text-sm text-gray-500 text-center mt-4">
-      &copy; 2024 Sma Tori. All rights reserved.
-    </p>
-  </footer>
-  
-    <script>
-      const hamburgerMenu = document.getElementById('hamburger-menu');
-      const mobileMenu = document.getElementById('mobile-menu');
-  
-      hamburgerMenu.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('translate-x-full')) {
-          mobileMenu.classList.remove('translate-x-full');
-          mobileMenu.classList.add('translate-x-0');
-        } else {
-          mobileMenu.classList.remove('translate-x-0');
-          mobileMenu.classList.add('translate-x-full');
-        }
-      });
-    </script>
-  </body>
-  </html>
-  
+<body>
+    
+</body>
+</html>
