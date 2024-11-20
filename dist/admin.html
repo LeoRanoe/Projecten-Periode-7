@@ -3,22 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sma Tori</title>
+  <title>Sma Tori - Admin</title>
   <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/styles.css">
 </head>
-<body class="bg-gray-900 text-gray-200 font-sans bg-cover bg-center bg-no-repeat">
-<!-- Admin Page -->
-<section id="admin" class="py-8 px-6">
+<body class="bg-gray-900 text-gray-200 font-sans">
+  <section id="admin" class="py-8 px-6">
     <h2 class="text-4xl text-green-500 font-bold mb-6" style="font-family: 'Libre Baskerville', serif;">Admin Panel</h2>
-   <!-- Add Story Form -->
+    
+    <!-- Add/Edit Story Form -->
     <div id="add-story-form" class="bg-gray-700 p-6 rounded-lg shadow-md">
-      <h4 class="text-xl font-semibold text-green-400 mb-4">Add New Story</h4>
+      <h4 id="form-title" class="text-xl font-semibold text-green-400 mb-4">Add New Story</h4>
       <input type="text" id="new-story-title" class="p-2 w-full bg-gray-800 text-white rounded-md mb-4" placeholder="Story Title" />
       <textarea id="new-story-content" class="p-2 w-full bg-gray-800 text-white rounded-md mb-4" placeholder="Story Content"></textarea>
-      
-      <!-- Genre Dropdown -->
       <select id="new-story-genre" class="p-2 w-full bg-gray-800 text-white rounded-md mb-4">
         <option value="Fiction">Fiction</option>
         <option value="Non-fiction">Non-fiction</option>
@@ -28,26 +25,27 @@
         <option value="Fantasy">Fantasy</option>
         <option value="Sci-fi">Sci-fi</option>
       </select>
-      
       <button id="add-story-btn" class="text-white bg-green-500 px-4 py-2 rounded-md hover:bg-green-600">Add Story</button>
     </div>
-        <!-- Story List (Editable) -->
-        <div id="story-list" class="mt-8">
-          <h4 class="text-xl font-semibold text-green-400 mb-4">Story Lijst</h4>
-          <ul class="space-y-4">
-            <!-- Dynamic stories will appear here -->
-          </ul>
-        </div>
-      </div>
+    
+    <!-- Story List -->
+    <div id="story-list" class="mt-8">
+      <h4 class="text-xl font-semibold text-green-400 mb-4">Story List</h4>
+      <ul id="story-list-container" class="space-y-4">
+        <!-- Dynamic stories will be displayed here -->
+      </ul>
     </div>
   </section>
+
   <script>
+    let editingIndex = null; // Keeps track of the story being edited
+
     // Load stories from localStorage
     function loadStoryList() {
       const stories = JSON.parse(localStorage.getItem('stories')) || [];
-      const storyListContainer = document.getElementById('story-list').querySelector('ul');
-      storyListContainer.innerHTML = '';  // Clear the list before rendering
-  
+      const storyListContainer = document.getElementById('story-list-container');
+      storyListContainer.innerHTML = ''; // Clear the list before rendering
+
       stories.forEach((story, index) => {
         const storyItem = document.createElement('li');
         storyItem.classList.add('bg-gray-700', 'p-4', 'rounded-lg', 'shadow-md');
@@ -55,41 +53,109 @@
           <h4 class="text-xl font-semibold text-green-400">${story.title}</h4>
           <p class="text-white">${story.content}</p>
           <p class="text-green-400">Genre: ${story.genre}</p>
+          <button class="edit-story-btn text-blue-500 mt-4">Edit</button>
           <button class="delete-story-btn text-red-500 mt-4">Delete</button>
         `;
         storyListContainer.appendChild(storyItem);
-  
+
         // Set up delete button
         const deleteButton = storyItem.querySelector('.delete-story-btn');
-        deleteButton.addEventListener('click', function() {
+        deleteButton.addEventListener('click', function () {
           deleteStory(index);
+        });
+
+        // Set up edit button
+        const editButton = storyItem.querySelector('.edit-story-btn');
+        editButton.addEventListener('click', function () {
+          startEditStory(index);
         });
       });
     }
-  
+
     // Add new story to localStorage
-    document.getElementById('add-story-btn').addEventListener('click', function() {
+    function addStory() {
       const title = document.getElementById('new-story-title').value;
       const content = document.getElementById('new-story-content').value;
       const genre = document.getElementById('new-story-genre').value;
-  
+
       if (title && content && genre) {
         const stories = JSON.parse(localStorage.getItem('stories')) || [];
-        stories.push({ title, content, genre, likes: 0, comments: [] });
+        stories.push({ title, content, genre });
         localStorage.setItem('stories', JSON.stringify(stories));
-        loadStoryList();  // Reload the story list after adding
+        loadStoryList(); // Reload the story list after adding
+        clearForm();
       } else {
         alert('Please fill out all fields!');
       }
-    });
-  
+    }
+
+    // Prepare the form for editing a story
+    function startEditStory(index) {
+      const stories = JSON.parse(localStorage.getItem('stories')) || [];
+      const story = stories[index];
+
+      // Pre-fill the form with the existing story data
+      document.getElementById('new-story-title').value = story.title;
+      document.getElementById('new-story-content').value = story.content;
+      document.getElementById('new-story-genre').value = story.genre;
+
+      // Set the editing index
+      editingIndex = index;
+
+      // Change the button text to "Save Changes"
+      const addButton = document.getElementById('add-story-btn');
+      addButton.textContent = 'Save Changes';
+
+      // Update event listener
+      addButton.removeEventListener('click', addStory);
+      addButton.addEventListener('click', saveStoryChanges);
+    }
+
+    // Save changes to the story
+    function saveStoryChanges() {
+      const title = document.getElementById('new-story-title').value;
+      const content = document.getElementById('new-story-content').value;
+      const genre = document.getElementById('new-story-genre').value;
+
+      if (title && content && genre && editingIndex !== null) {
+        const stories = JSON.parse(localStorage.getItem('stories')) || [];
+        stories[editingIndex] = { ...stories[editingIndex], title, content, genre };
+        localStorage.setItem('stories', JSON.stringify(stories));
+        loadStoryList(); // Reload the story list after saving changes
+        clearForm();
+
+        // Reset the add button
+        const addButton = document.getElementById('add-story-btn');
+        addButton.textContent = 'Add Story';
+        addButton.removeEventListener('click', saveStoryChanges);
+        addButton.addEventListener('click', addStory);
+
+        editingIndex = null;
+      } else {
+        alert('Please fill out all fields!');
+      }
+    }
+
     // Delete a story from localStorage
     function deleteStory(index) {
       const stories = JSON.parse(localStorage.getItem('stories')) || [];
       stories.splice(index, 1);
       localStorage.setItem('stories', JSON.stringify(stories));
-      loadStoryList();  // Reload the story list after deletion
+      loadStoryList(); // Reload the story list after deletion
     }
+
+    // Clear the form
+    function clearForm() {
+      document.getElementById('new-story-title').value = '';
+      document.getElementById('new-story-content').value = '';
+      document.getElementById('new-story-genre').value = 'Fiction';
+    }
+
+    // Event listener for the add story button
+    document.getElementById('add-story-btn').addEventListener('click', addStory);
+
+    // Load stories when the page is loaded
+    window.onload = loadStoryList;
   </script>
 </body>
 </html>
