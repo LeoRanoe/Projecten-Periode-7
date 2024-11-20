@@ -1,5 +1,6 @@
   nav {
     font-family: 'Jolly Lodger', cursive;
+    position: relative;
   }
   /* Green line underline for nav links */
   .nav-link {
