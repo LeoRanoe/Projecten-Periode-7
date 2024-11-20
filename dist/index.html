@@ -68,9 +68,10 @@
       <p class="text-white shadow-text summary-text">
         Welcome to Sma Tori, the ultimate online platform where Surinamese Creole meets modern-day storytelling! Developed by the talented ICT students at NATIN, this website is dedicated to sharing the most talked-about happenings and juicy gossips from all around the community.
       </p>
-      <button class="px-6 py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600 transition">
+      <a href="/dist/stories.html" class="inline-block px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 hover:shadow-xl transition duration-300 transform hover:scale-105">
         Lees nu
-      </button>
+      </a>
+      
     </div>
 
     <!-- Right Image Section -->
@@ -118,6 +119,29 @@
       &copy; 2024 Sma Tori. All rights reserved.
     </p>
   </footer>
+
+  <style>
+    @keyframes soft-bounce {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .footer-link {
+      animation: soft-bounce 1.5s ease-in-out infinite;
+    }
+
+    .social-icon {
+      animation: soft-bounce 1.5s ease-in-out infinite;
+    }
+  </style>
+
   
     <script>
       const hamburgerMenu = document.getElementById('hamburger-menu');

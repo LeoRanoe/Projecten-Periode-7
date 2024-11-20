@@ -50,72 +50,85 @@
   <li><a href="/dist/contact.html" class="hover:text-green-500">Contact</a></li>
 </ul>
  <!-- Genre Filter -->
-  <div id="genre-filter" class="mb-6 ml-6">
-    <label for="filter-genre" class="text-green-500  font-semibold" style="font-family: 'Libre Baskerville', serif;">Genre:</label>
-    <select id="filter-genre" class="p-1 w-32 bg-gray-800 text-white rounded-md mt-2 text-sm">
-      <option value="All">All</option>
-      <option value="Fiction">Fiction</option>
-      <option value="Non-fiction">Non-fiction</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Drama">Drama</option>
-      <option value="Horror">Horror</option>
-      <option value="Fantasy">Fantasy</option>
-      <option value="Sci-fi">Sci-fi</option>
-    </select>
+<div id="genre-filter" class="mb-6 mx-auto text-center">
+  <label for="filter-genre" class="text-green-500 font-semibold text-lg" style="font-family: 'Libre Baskerville', serif;">Filter by Genre:</label>
+  <select id="filter-genre" class="p-3 w-48 bg-gray-800 text-white rounded-md mt-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+    <option value="All">All</option>
+    <option value="Fiction">Fiction</option>
+    <option value="Non-fiction">Non-fiction</option>
+    <option value="Comedy">Comedy</option>
+    <option value="Drama">Drama</option>
+    <option value="Horror">Horror</option>
+    <option value="Fantasy">Fantasy</option>
+    <option value="Sci-fi">Sci-fi</option>
+  </select>
+</div>
+
+<!-- Story Section -->
+<section id="stories" class="py-8 px-6 bg-gray-900">
+  <h2 class="text-4xl text-green-500 font-bold mb-6 text-center" style="font-family: 'Libre Baskerville', serif;">Stories</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="story-list">
+    <!-- Dynamically loaded stories will appear here -->
   </div>
+</section>
 
-  <!-- Story Section -->
-  <section id="stories" class="py-8 px-6">
-    <h2 class="text-4xl text-green-500 font-bold mb-6" style="font-family: 'Libre Baskerville', serif;">Stories</h2>
-    <div class="space-y-8" id="story-list">
-      <!-- Dynamically loaded stories will appear here -->
-    </div>
-  </section>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const stories = JSON.parse(localStorage.getItem('stories')) || [];
-      displayStories(stories);
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stories = JSON.parse(localStorage.getItem('stories')) || [];
+    displayStories(stories);
 
-      // Genre filter dropdown
-      const filterGenre = document.getElementById('filter-genre');
-      filterGenre.addEventListener('change', function() {
-        const selectedGenre = filterGenre.value;
-        filterStoriesByGenre(selectedGenre, stories);
-      });
+    // Genre filter dropdown
+    const filterGenre = document.getElementById('filter-genre');
+    filterGenre.addEventListener('change', function() {
+      const selectedGenre = filterGenre.value;
+      filterStoriesByGenre(selectedGenre, stories);
     });
+  });
 
-    // Display stories
-    function displayStories(stories) {
-      const storyListContainer = document.getElementById('story-list');
-      storyListContainer.innerHTML = '';  // Clear the list before rendering
+  // Display stories
+  function displayStories(stories) {
+    const storyListContainer = document.getElementById('story-list');
+    storyListContainer.innerHTML = '';  // Clear the list before rendering
 
-      stories.forEach((story) => {
-        const storyElement = document.createElement('div');
-        storyElement.classList.add('genre-section');
-        storyElement.innerHTML = `
-          <h3 class="text-3xl text-green-500 font-semibold mb-4" style="font-family: 'Libre Baskerville', serif;">${story.genre}</h3>
-          <div class="stories-list space-y-6">
-            <div class="story p-4 bg-gray-700 rounded-lg shadow-md">
-              <h4 class="text-xl font-semibold text-green-400">${story.title}</h4>
-              <p class="text-white">${story.content}</p>
-            </div>
-          </div>
-        `;
-        storyListContainer.appendChild(storyElement);
-      });
+    stories.forEach((story) => {
+      const storyElement = document.createElement('div');
+      storyElement.classList.add('story-item', 'bg-gray-800', 'rounded-lg', 'shadow-lg', 'p-6', 'transition', 'transform', 'hover:scale-105', 'hover:shadow-xl');
+      storyElement.innerHTML = `
+        <h3 class="text-2xl text-green-500 font-semibold mb-4" style="font-family: 'Libre Baskerville', serif;">${story.genre}</h3>
+        <h4 class="text-xl font-semibold text-green-400 mb-2">${story.title}</h4>
+        <div class="story-content max-h-72 overflow-y-auto text-white mb-4">
+          <p>${story.content}</p>
+        </div>
+        <button class="text-green-500 hover:text-green-400 text-sm" onclick="toggleFullStory(this, '${story.content}')">Read More</button>
+      `;
+      storyListContainer.appendChild(storyElement);
+    });
+  }
+
+  // Filter stories based on genre
+  function filterStoriesByGenre(selectedGenre, stories) {
+    let filteredStories;
+    if (selectedGenre === "All") {
+      filteredStories = stories;
+    } else {
+      filteredStories = stories.filter(story => story.genre === selectedGenre);
     }
+    displayStories(filteredStories);  // Display the filtered stories
+  }
 
-    // Filter stories based on genre
-    function filterStoriesByGenre(selectedGenre, stories) {
-      let filteredStories;
-      if (selectedGenre === "All") {
-        filteredStories = stories;
-      } else {
-        filteredStories = stories.filter(story => story.genre === selectedGenre);
-      }
-      displayStories(filteredStories);  // Display the filtered stories
+  // Toggle full story visibility
+  function toggleFullStory(button, fullText) {
+    const storyContent = button.previousElementSibling;
+    if (storyContent.style.maxHeight === 'none') {
+      storyContent.style.maxHeight = '18rem'; // Reset to the original height
+      button.textContent = 'Read More';
+    } else {
+      storyContent.style.maxHeight = 'none'; // Expand the content
+      button.textContent = 'Read Less';
     }
-  </script>
+  }
+</script>
+
 
 <footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
   <!-- Spider Web Background Image -->
@@ -125,13 +138,14 @@
     <!-- Logo in the Center -->
     <h2 class="text-7xl font-bold text-green-500 text-center" style="font-family: 'Jolly Lodger', cursive;">Sma Tori</h2>
     
+    <!-- Links Section with Animation -->
     <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
       <a href="#about" class="footer-link px-4 py-2 hover:text-white transition duration-300 transform hover:scale-110 text-center">About</a>
       <a href="#contact" class="footer-link px-4 py-2 hover:text-white transition duration-300 transform hover:scale-110 text-center">Contact</a>
       <a href="#affiliates" class="footer-link px-4 py-2 hover:text-white transition duration-300 transform hover:scale-110 text-center">Affiliates</a>
       <a href="#resources" class="footer-link px-4 py-2 hover:text-white transition duration-300 transform hover:scale-110 text-center">Resources</a>
     </div>
-
+    
     <!-- Social Media Icons with Animation -->
     <div class="flex space-x-4 mt-4">
       <a href="#" class="social-icon text-gray-400 hover:text-white transition-transform duration-500 transform hover:scale-125">
