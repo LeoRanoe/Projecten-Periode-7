@@ -7,6 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles/styles.css">
     <title>Document</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init({
+            publicKey: "0-YEePQrDoH3zBawW",
+          });
+      })();
+    </script>
+    <script src="contact.js"></script>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans bg-cover bg-center bg-no-repeat">
  <!-- Flying Bats SVGs -->
@@ -50,68 +61,52 @@
 </ul>
 <section class="flex flex-col items-center justify-center px-8 py-16 lg:flex-row lg:px-20">
   <!-- Contact Form -->
-  <div class="bg-gray-800 bg-opacity-70 p-8 rounded-lg shadow-lg w-full max-w-lg lg:w-1/2">
-    <form id="contact-form" class="space-y-4" onsubmit="sendEmail(event)">
-      <div>
-        <label class="block text-gray-300">Email address</label>
-        <input type="email" id="user_email" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required>
-      </div>
-      <div>
-        <label class="block text-gray-300">Name</label>
-        <input type="text" id="user_name" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required>
-      </div>
-      <div>
-        <label class="block text-gray-300">Message</label>
-        <textarea id="user_message" class="w-full h-32 px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
-      </div>
-      <button type="submit" class="w-full bg-green-500 text-gray-900 font-semibold py-2 rounded-lg hover:bg-green-600">Send</button>
-    </form>
-  </div>
+<div class="bg-gray-800 bg-opacity-70 p-8 rounded-lg shadow-lg w-full max-w-lg lg:w-1/2">
+  <form id="contact-form" class="space-y-4" onsubmit="sendEmail(event)">
+    <div>
+      <label class="block text-gray-300">Email address</label>
+      <input type="email" id="user_email" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+    </div>
+    <div>
+      <label class="block text-gray-300">Name</label>
+      <input type="text" id="user_name" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+    </div>
+    <div>
+      <label class="block text-gray-300">Message</label>
+      <textarea id="user_message" class="w-full h-32 px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+    </div>
+    <button type="submit" class="w-full bg-green-500 text-gray-900 font-semibold py-2 rounded-lg hover:bg-green-600">Send</button>
+  </form>
+</div>
+
+<script>
+  function sendEmail(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    
+    // Collect form data
+    let parms = {
+      name: document.getElementById("user_name").value,
+      Email: document.getElementById("user_email").value,
+      message: document.getElementById("user_message").value
+    };
+
+    // Send the email using EmailJS
+    emailjs.send("service_5vephhk", "template_2lnbxx8", parms)
+      .then(function(response) {
+        alert("Email Sent!!!");
+      }, function(error) {
+        console.error("Error sending email:", error);
+        alert("There was an error sending your message. Please try again.");
+      });
+  }
+</script>
 
   <!-- Vertical Divider and Text -->
   <div class="flex flex-col items-center mt-8 lg:mt-0 lg:ml-12 lg:border-l lg:border-gray-700 lg:pl-12">
     <h1 class="text-5xl font-bold text-white" style="font-family: 'Jolly Lodger', serif;">Contact us</h1>
     <img src="/images/background 4.png" alt="Spooky Mask" class="hidden lg:block mt-6 w-48 opacity-70">
   </div>
-</section>
-
-<!-- EmailJS Script -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  // Initialize EmailJS with your User ID
-  emailjs.init('YOUR_USER_ID'); // Replace with your User ID
-
-  // Function to send the email
-  function sendEmail(event) {
-    event.preventDefault();  // Prevent form from submitting normally
-
-    // Get form data
-    const userEmail = document.getElementById('user_email').value;
-    const userName = document.getElementById('user_name').value;
-    const userMessage = document.getElementById('user_message').value;
-
-    // Set up the data to send to EmailJS
-    const templateParams = {
-      user_email: userEmail,
-      user_name: userName,
-      user_message: userMessage
-    };
-
-    // Send the email using EmailJS
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-      .then(function(response) {
-        // Success feedback
-        alert('Your message has been sent!');
-      }, function(error) {
-        // Error feedback
-        alert('Failed to send your message. Please try again later.');
-      });
-
-    // Reset form after sending
-    document.getElementById('contact-form').reset();
-  }
-</script>
-   
   </section>
   <footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
     <!-- Spider Web Background Image -->
