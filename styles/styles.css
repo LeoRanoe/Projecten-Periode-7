@@ -90,6 +90,125 @@
   .social-icon {
     animation: soft-bounce 1.5s ease-in-out infinite;
   }  
+  /*Landing page styling*/
+   /* Fade-in animation */
+   @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Slide-in from left */
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Fade-in up animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Zoom-in effect */
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Button animation */
+  @keyframes buttonHover {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+
+  .animate-slideInFromLeft {
+    animation: slideInFromLeft 1s ease-in-out forwards;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-in-out forwards;
+  }
+
+  .animate-zoomIn {
+    animation: zoomIn 1s ease-in-out forwards;
+  }
+
+  .shadow-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Optional: Hover effect for images */
+  .hover\:rotate-3:hover {
+    transform: rotate(3deg);
+  }
+
+  /* Improved Button Hover Effects */
+  .hover\:scale-110:hover {
+    animation: buttonHover 0.5s ease-in-out;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .focus\:ring-4:focus {
+    outline: none;
+    ring-width: 4px;
+    ring-color: #38b2ac;
+  }
+
+  .focus\:ring-opacity-50:focus {
+    ring-opacity: 0.5;
+  }
+
+  /* Active effect when button is pressed */
+  .active\:scale-95:active {
+    transform: scale(0.95);
+  }
+
+  .active\:bg-green-700:active {
+    background-color: #2f855a;
+  }
+
+  /* Hover effect for images */
+  .hover\:rotate-3:hover {
+    transform: rotate(3deg);
+  }
+
   /*Genre filter styling*/
   #genre-filter {
     margin-bottom: 2rem; /* Adjusted bottom margin for better spacing */
@@ -135,11 +254,6 @@
     background-color: #2d3748; /* Background color for options */
     color: #fff; /* White text for options */
   }  
-  /*Storie Section Styling*/
-  #stories {
-    padding: 3rem 1.5rem; /* More balanced padding */
-    background-color: #1a202c; /* Slightly darker gray for contrast */
-  }
   
   #stories h2 {
     font-family: 'Libre Baskerville', serif;

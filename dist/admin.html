@@ -6,6 +6,52 @@
   <title>Sma Tori - Admin</title>
   <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .story-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .edit-btn, .delete-btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100px;
+    }
+
+    .edit-btn {
+      background-color: #4CAF50; /* Green */
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background-color: #45a049;
+    }
+
+    .delete-btn {
+      background-color: #f44336; /* Red */
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background-color: #e53935;
+    }
+
+    .read-more-btn {
+      color: rgba(255, 255, 255, 0.701);
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .read-more-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans">
   <section id="admin" class="py-8 px-6">
@@ -50,25 +96,47 @@
         storyItem.classList.add('bg-gray-700', 'p-4', 'rounded-lg', 'shadow-md');
         storyItem.innerHTML = `
           <h4 class="text-xl font-semibold text-green-400">${story.title}</h4>
-          <p class="text-white">${story.content}</p>
+          <p class="text-white short-content">${story.content.substring(0, 100)}...</p>
+          <p class="full-content text-white hidden">${story.content}</p>
           <p class="text-green-400">Genre: ${story.genre}</p>
-          <button class="edit-story-btn text-blue-500 mt-4">Edit</button>
-          <button class="delete-story-btn text-red-500 mt-4">Delete</button>
+          <button class="read-more-btn">Read More</button>
+          <div class="story-buttons">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>
         `;
         storyListContainer.appendChild(storyItem);
 
+        // Set up read more button
+        const readMoreButton = storyItem.querySelector('.read-more-btn');
+        readMoreButton.addEventListener('click', function () {
+          toggleContentVisibility(storyItem);
+        });
+
         // Set up delete button
-        const deleteButton = storyItem.querySelector('.delete-story-btn');
+        const deleteButton = storyItem.querySelector('.delete-btn');
         deleteButton.addEventListener('click', function () {
           deleteStory(index);
         });
 
         // Set up edit button
-        const editButton = storyItem.querySelector('.edit-story-btn');
+        const editButton = storyItem.querySelector('.edit-btn');
         editButton.addEventListener('click', function () {
           startEditStory(index);
         });
       });
+    }
+
+    // Toggle visibility of story content
+    function toggleContentVisibility(storyItem) {
+      const fullContent = storyItem.querySelector('.full-content');
+      const shortContent = storyItem.querySelector('.short-content');
+
+      // Toggle visibility
+      fullContent.classList.toggle('hidden');
+      shortContent.classList.toggle('hidden');
+      const readMoreButton = storyItem.querySelector('.read-more-btn');
+      readMoreButton.textContent = fullContent.classList.contains('hidden') ? 'Read More' : 'Read Less';
     }
 
     // Add new story to localStorage
@@ -147,14 +215,13 @@
     function clearForm() {
       document.getElementById('new-story-title').value = '';
       document.getElementById('new-story-content').value = '';
-      document.getElementById('new-story-genre').value = 'Fiction';
+      document.getElementById('new-story-genre').value = 'Romance';
     }
 
-    // Event listener for the add story button
+    // Initialize the app
     document.getElementById('add-story-btn').addEventListener('click', addStory);
 
-    // Load stories when the page is loaded
-    window.onload = loadStoryList;
+    loadStoryList(); // Load the story list on page load
   </script>
 </body>
 </html>
