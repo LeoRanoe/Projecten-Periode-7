@@ -50,11 +50,11 @@
   <li><a href="/dist/contact.html" class="hover:text-green-500">Contact</a></li>
 </ul>
  <!-- Genre Filter -->
-<div id="genre-filter" class="mb-6 mx-auto text-center">
-  <label for="filter-genre" class="text-green-500 font-semibold text-lg" style="font-family: 'Libre Baskerville', serif;">Filter by Genre:</label>
-  <select id="filter-genre" class="p-3 w-48 bg-gray-800 text-white rounded-md mt-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+ <div id="genre-filter" class="mb-8 mx-auto text-center">
+  <label for="filter-genre" class="text-green-500 font-semibold text-lg mb-2 inline-block" style="font-family: 'Libre Baskerville', serif;">Filter by Genre:</label>
+  <select id="filter-genre" class="p-3 w-48 bg-gray-800 text-white rounded-md mt-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 shadow-md hover:shadow-lg transition-shadow duration-200 ease-in-out">
     <option value="All">All</option>
-    <option value="Fiction">Fiction</option>
+    <option value="Romance">Romance</option>
     <option value="Non-fiction">Non-fiction</option>
     <option value="Comedy">Comedy</option>
     <option value="Drama">Drama</option>
@@ -65,68 +65,96 @@
 </div>
 
 <!-- Story Section -->
-<section id="stories" class="py-8 px-6 bg-gray-900">
-  <h2 class="text-4xl text-green-500 font-bold mb-6 text-center" style="font-family: 'Libre Baskerville', serif;">Stories</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="story-list">
+<section id="stories" class="py-12 px-6 bg-gray-900">
+  <h2 class="text-5xl text-green-500 font-extrabold mb-8 text-center" style="font-family: 'Libre Baskerville', serif;">Stories</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="story-list">
     <!-- Dynamically loaded stories will appear here -->
   </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const stories = JSON.parse(localStorage.getItem('stories')) || [];
-    displayStories(stories);
+document.addEventListener('DOMContentLoaded', function() {
+  const stories = JSON.parse(localStorage.getItem('stories')) || [];
+  displayStories(stories);
 
-    // Genre filter dropdown
-    const filterGenre = document.getElementById('filter-genre');
-    filterGenre.addEventListener('change', function() {
-      const selectedGenre = filterGenre.value;
-      filterStoriesByGenre(selectedGenre, stories);
-    });
+  // Genre filter dropdown
+  const filterGenre = document.getElementById('filter-genre');
+  filterGenre.addEventListener('change', function() {
+    const selectedGenre = filterGenre.value;
+    filterStoriesByGenre(selectedGenre, stories);
   });
 
-  // Display stories
-  function displayStories(stories) {
-    const storyListContainer = document.getElementById('story-list');
-    storyListContainer.innerHTML = '';  // Clear the list before rendering
+  // Mobile Menu Toggle
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-    stories.forEach((story) => {
-      const storyElement = document.createElement('div');
-      storyElement.classList.add('story-item', 'bg-gray-800', 'rounded-lg', 'shadow-lg', 'p-6', 'transition', 'transform', 'hover:scale-105', 'hover:shadow-xl');
-      storyElement.innerHTML = `
-        <h3 class="text-2xl text-green-500 font-semibold mb-4" style="font-family: 'Libre Baskerville', serif;">${story.genre}</h3>
-        <h4 class="text-xl font-semibold text-green-400 mb-2">${story.title}</h4>
-        <div class="story-content max-h-72 overflow-y-auto text-white mb-4">
-          <p>${story.content}</p>
-        </div>
-        <button class="text-green-500 hover:text-green-400 text-sm" onclick="toggleFullStory(this, '${story.content}')">Read More</button>
-      `;
-      storyListContainer.appendChild(storyElement);
+  hamburgerMenu.addEventListener('click', function() {
+    mobileMenu.classList.toggle('translate-x-0'); // Toggles menu visibility
+  });
+});
+
+// Display stories
+function displayStories(stories) {
+  const storyListContainer = document.getElementById('story-list');
+  storyListContainer.innerHTML = '';  // Clear the list before rendering
+
+  stories.forEach((story) => {
+    const storyElement = document.createElement('div');
+    storyElement.classList.add('story-item', 'bg-gray-800', 'rounded-xl', 'shadow-lg', 'p-6', 'transition-transform', 'hover:scale-105', 'hover:shadow-xl', 'max-w-lg', 'mx-auto', 'hover:bg-gray-700', 'relative');  // Updated styling and hover effect
+    
+    // Add the click listener to toggle full story when the story item is clicked
+    storyElement.addEventListener('click', function() {
+      toggleFullStory(storyElement);
     });
-  }
 
-  // Filter stories based on genre
-  function filterStoriesByGenre(selectedGenre, stories) {
-    let filteredStories;
-    if (selectedGenre === "All") {
-      filteredStories = stories;
-    } else {
-      filteredStories = stories.filter(story => story.genre === selectedGenre);
-    }
-    displayStories(filteredStories);  // Display the filtered stories
-  }
+    storyElement.innerHTML = `
+      <h3 class="text-2xl text-green-500 font-semibold mb-4" style="font-family: 'Libre Baskerville', serif;">${story.genre}</h3>
+      <h4 class="text-xl font-semibold text-green-400 mb-2">${story.title}</h4>
+      <div class="story-content max-h-72 overflow-y-auto text-white mb-4">
+        <p class="story-preview">${story.content.substring(0, 150)}...</p> <!-- Preview of the story -->
+        <p class="story-full hidden">${story.content}</p> <!-- Full story hidden initially -->
+      </div>
+      <button class="text-sm text-white bg-green-500 hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 py-2 px-4 rounded transition duration-200 read-more-btn">Show Full Story</button>
+    `;
+    storyListContainer.appendChild(storyElement);
+  });
+}
 
-  // Toggle full story visibility
-  function toggleFullStory(button, fullText) {
-    const storyContent = button.previousElementSibling;
-    if (storyContent.style.maxHeight === 'none') {
-      storyContent.style.maxHeight = '18rem'; // Reset to the original height
-      button.textContent = 'Read More';
-    } else {
-      storyContent.style.maxHeight = 'none'; // Expand the content
-      button.textContent = 'Read Less';
-    }
+// Filter stories based on genre
+function filterStoriesByGenre(selectedGenre, stories) {
+  let filteredStories;
+  if (selectedGenre === "All") {
+    filteredStories = stories;
+  } else {
+    filteredStories = stories.filter(story => story.genre === selectedGenre);
   }
+  displayStories(filteredStories);  // Display the filtered stories
+}
+
+// Toggle the visibility of the full story
+function toggleFullStory(storyElement) {
+  const fullStory = storyElement.querySelector('.story-full');
+  const previewText = storyElement.querySelector('.story-preview');
+  const buttonElement = storyElement.querySelector('.read-more-btn');
+  
+  // Toggle visibility of full story when the story box is clicked
+  if (fullStory.classList.contains('hidden')) {
+    fullStory.classList.remove('hidden');
+    fullStory.classList.add('show');
+    previewText.classList.add('hidden');
+    buttonElement.textContent = "Show Less"; // Change button text to "Show Less"
+    buttonElement.classList.replace("bg-green-500", "bg-red-500"); // Change color to red for "Show Less"
+    buttonElement.classList.replace("hover:bg-green-400", "hover:bg-red-400"); // Update hover color
+  } else {
+    fullStory.classList.add('hidden');
+    fullStory.classList.remove('show');
+    previewText.classList.remove('hidden');
+    buttonElement.textContent = "Show Full Story"; // Change button text back to "Show Full Story"
+    buttonElement.classList.replace("bg-red-500", "bg-green-500"); // Change color back to green
+    buttonElement.classList.replace("hover:bg-red-400", "hover:bg-green-400"); // Update hover color
+  }
+}
+
 </script>
 
 
