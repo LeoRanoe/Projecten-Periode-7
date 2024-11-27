@@ -112,3 +112,21 @@
     overflow-y: auto;   /* Enable scrolling if content exceeds max height */
     text-overflow: ellipsis;
   }
+  input:invalid,
+textarea:invalid {
+  border: 2px solid red;
+}
+
+button:focus {
+  outline: 2px solid #4c51bf;
+}
+
+button:hover {
+  background-color: #38a169; /* Darker green */
+  transform: scale(1.02);
+}
+#success-message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
