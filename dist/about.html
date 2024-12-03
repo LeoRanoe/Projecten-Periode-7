@@ -59,6 +59,135 @@
   <li><a href="/dist/contact.html" class="hover:text-green-500">Contact</a></li>
 </ul>
   
+<main class="flex flex-col items-center justify-center px-6 md:px-12 py-8">
+  <!-- Text Section -->
+  <div class="w-full md:w-1/2 text-center space-y-6">
+
+    <!-- Container for both headings centered -->
+    <div class="flex items-center justify-center space-x-4">
+      <h1 class="text-6xl md:text-5xl font-bold text-green-100" style="font-family: 'Libre Baskerville', serif;">About</h1>
+      <h1 class="text-8xl md:text-7xl font-bold text-green-500" style="font-family: 'Jolly Lodger', cursive;">Sma Tori</h1>
+    </div>
+
+    <!-- Container for both ghost icons and paragraph, centered -->
+    <div class="flex items-center justify-center space-x-4 mt-4">
+      <!-- Left ghost icon -->
+      <img src="/images/ghost-icon.png" alt="Ghost Icon" class="w-8 h-8">
+
+      <!-- Paragraph Section -->
+      <p class="text-white shadow-text summary-text max-w-3xl">
+        Welkom bij Sma Tori, dé plek waar Surinaamse verhalen tot leven komen! Ontwikkeld door de getalenteerde ICT-studenten van NATIN, brengen we de heetste tories en sappigste gos' uit de hele gemeenschap. Hier ontdek je wat er speelt, wat mensen bezighoudt en wat je echt niet mag missen.
+        Pak je fatu en geniet van de échte vibes van Sranan – Sma Tori, waar wij de tori voor en met elkaar delen!
+      </p>
+
+      <!-- Right ghost icon -->
+      <img src="/images/ghost-icon.png" alt="Ghost Icon" class="w-8 h-8">
+    </div>
+  </div>
+</main>
+
+<!-- Section with 4 Columns (outside main section) -->
+<section class="w-full py-8 bg-gray-800">
+  
+  <!-- "ABOUT US" Heading -->
+  <div class="text-center mb-8">
+    <h1 class="text-4xl md:text-3xl font-bold text-green-300" style="font-family: 'Libre Baskerville', serif;">ABOUT US</h1>
+  </div>
+
+  <!-- Grid of 4 Columns -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
+
+    <!-- Column 1 -->
+    <div class="text-center relative">
+      <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
+        <!-- Icon with toggle functionality -->
+        <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
+          <img src="/images/icon1.png" alt="Icon 1" class="w-16 h-16 mx-auto mb-4">
+        </div>
+
+        <!-- Hidden Information -->
+        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
+          <p class="mb-2"><strong>Name:</strong> ManvandehuK</p>
+          <p class="mb-2"><strong>Age:</strong> 81</p>
+          <p class="mb-2"><strong>Height:</strong> 6 </p> 
+          <p class="mb-2"><strong>Cause of death:</strong> </p> 
+          <p><strong>Description:</strong> </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="text-center relative">
+      <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
+        <!-- Icon with toggle functionality -->
+        <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
+          <img src="/images/icon2.png" alt="Icon 2" class="w-16 h-16 mx-auto mb-4">
+        </div>
+
+        <!-- Hidden Information -->
+        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
+          <p class="mb-2"><strong>Name:</strong> Regedek</p>
+          <p class="mb-2"><strong>Age:</strong> 69</p>
+          <p class="mb-2"><strong>Height:</strong> 6'1 (I wish)</p>
+          <p class="mb-2"><strong>Cause of death:</strong> Simping too much</p>
+          <p><strong>Description:</strong> </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="text-center relative">
+      <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
+        <!-- Icon with toggle functionality -->
+        <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
+          <img src="/images/icon3.png" alt="Icon 3" class="w-16 h-16 mx-auto mb-4">
+        </div>
+
+        <!-- Hidden Information -->
+        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
+          <p class="mb-2"><strong>Name:</strong> </p>
+          <p class="mb-2"><strong>Age:</strong> 19</p>
+          <p class="mb-2"><strong>Height:</strong> 5'1</p>
+          <p class="mb-2"><strong>Cause of death:</strong> Natin</p>
+          <p><strong>Description:</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="text-center relative">
+      <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
+        <!-- Icon with toggle functionality -->
+        <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
+          <img src="/images/icon4.png" alt="Icon 4" class="w-16 h-16 mx-auto mb-4">
+        </div>
+
+        <!-- Hidden Information -->
+        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
+          <p class="mb-2"><strong>Name:</strong> DinoTendiezz</p>
+          <p class="mb-2"><strong>Age:</strong> 44</p>
+          <p class="mb-2"><strong>Height:</strong> 4'11</p>
+          <p class="mb-2"><strong>Cause of death:</strong> </p>
+          <p><strong>Description:</strong> I like reading love stories about 2 men and I love Chinese anime.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- JavaScript for Toggle Functionality -->
+<script>
+  function toggleInfo(iconElement) {
+    // Get the next sibling of the icon container, which is the info container
+    var infoContainer = iconElement.nextElementSibling;
+
+    // Toggle the 'hidden' class to show/hide the information
+    infoContainer.classList.toggle("hidden");
+  }
+</script>
+
+
 <footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
   <!-- Spider Web Background Image -->
   <div class="absolute top-0 right-0 h-80 w-80 bg-no-repeat bg-contain opacity-50" style="background-image: url('/images/spiderweb1.png');"></div>
