@@ -49,25 +49,28 @@
   <li><a href="/dist/about.html" class="hover:text-green-500">About</a></li>
   <li><a href="/dist/contact.html" class="hover:text-green-500">Contact</a></li>
 </ul>
- <!-- Genre Filter -->
-<div id="genre-filter" class="mb-6 mx-auto text-center">
-  <label for="filter-genre" class="text-green-500 font-semibold text-lg" style="font-family: 'Libre Baskerville', serif;">Filter by Genre:</label>
-  <select id="filter-genre" class="p-3 w-48 bg-gray-800 text-white rounded-md mt-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
-    <option value="All">All</option>
-    <option value="Fiction">Fiction</option>
-    <option value="Non-fiction">Non-fiction</option>
-    <option value="Comedy">Comedy</option>
+<!-- Genre Filter -->
+<div id="genre-filter" class="mb-8 text-center">
+  <label for="filter-genre" class="text-green-500 font-semibold text-lg mb-2" style="font-family: 'Libre Baskerville', serif;">Filter by Genre:</label>
+  <select id="filter-genre" class="p-2 bg-gray-100 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+    <option value="Romantiek">Romantiek</option>
+    <option value="Vriendschap">Vriendschap</option>
+    <option value="Mysterie">Mysterie</option>
+    <option value="Actie">Actie</option>
     <option value="Drama">Drama</option>
+    <option value="Humor">Humor</option>
+    <option value="Schoolleven">Schoolleven</option>
+    <option value="Avontuur">Avontuur</option>
+    <option value="Fantasie">Fantasie</option>
     <option value="Horror">Horror</option>
-    <option value="Fantasy">Fantasy</option>
-    <option value="Sci-fi">Sci-fi</option>
   </select>
 </div>
 
+
 <!-- Story Section -->
-<section id="stories" class="py-8 px-6 bg-gray-900">
-  <h2 class="text-4xl text-green-500 font-bold mb-6 text-center" style="font-family: 'Libre Baskerville', serif;">Stories</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="story-list">
+<section id="stories" class="py-12 px-6 bg-gray-900">
+  <h2 class="text-5xl text-green-500 font-extrabold mb-8 text-center" style="font-family: 'Libre Baskerville', serif;">Stories</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="story-list">
     <!-- Dynamically loaded stories will appear here -->
   </div>
 </section>
@@ -83,6 +86,14 @@
       const selectedGenre = filterGenre.value;
       filterStoriesByGenre(selectedGenre, stories);
     });
+
+    // Mobile Menu Toggle
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerMenu.addEventListener('click', function() {
+      mobileMenu.classList.toggle('translate-x-0'); // Toggles menu visibility
+    });
   });
 
   // Display stories
@@ -92,14 +103,21 @@
 
     stories.forEach((story) => {
       const storyElement = document.createElement('div');
-      storyElement.classList.add('story-item', 'bg-gray-800', 'rounded-lg', 'shadow-lg', 'p-6', 'transition', 'transform', 'hover:scale-105', 'hover:shadow-xl');
+      storyElement.classList.add('story-item', 'bg-gray-800', 'rounded-xl', 'shadow-lg', 'p-6', 'transition-transform', 'hover:scale-105', 'hover:shadow-xl', 'max-w-lg', 'mx-auto', 'hover:bg-gray-700', 'relative', 'flex', 'flex-col', 'justify-between');  // Updated styling and hover effect
+      
+      // Add the click listener to toggle full story when the story item is clicked
+      storyElement.addEventListener('click', function() {
+        toggleFullStory(storyElement);
+      });
+
       storyElement.innerHTML = `
         <h3 class="text-2xl text-green-500 font-semibold mb-4" style="font-family: 'Libre Baskerville', serif;">${story.genre}</h3>
         <h4 class="text-xl font-semibold text-green-400 mb-2">${story.title}</h4>
         <div class="story-content max-h-72 overflow-y-auto text-white mb-4">
-          <p>${story.content}</p>
+          <p class="story-preview">${story.content.substring(0, 150)}...</p> <!-- Preview of the story -->
+          <p class="story-full hidden">${story.content}</p> <!-- Full story hidden initially -->
         </div>
-        <button class="text-green-500 hover:text-green-400 text-sm" onclick="toggleFullStory(this, '${story.content}')">Read More</button>
+        <button class="text-sm text-white bg-green-500 hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 py-2 px-4 rounded transition duration-200 read-more-btn">Show Full Story</button>
       `;
       storyListContainer.appendChild(storyElement);
     });
@@ -116,19 +134,22 @@
     displayStories(filteredStories);  // Display the filtered stories
   }
 
-  // Toggle full story visibility
-  function toggleFullStory(button, fullText) {
-    const storyContent = button.previousElementSibling;
-    if (storyContent.style.maxHeight === 'none') {
-      storyContent.style.maxHeight = '18rem'; // Reset to the original height
-      button.textContent = 'Read More';
+  // Toggle the visibility of the full story
+  function toggleFullStory(storyElement) {
+    const fullStory = storyElement.querySelector('.story-full');
+    const previewText = storyElement.querySelector('.story-preview');
+    const readMoreButton = storyElement.querySelector('.read-more-btn');
+    if (fullStory.classList.contains('hidden')) {
+      fullStory.classList.remove('hidden');
+      previewText.classList.add('hidden');
+      readMoreButton.innerHTML = "Show Less";
     } else {
-      storyContent.style.maxHeight = 'none'; // Expand the content
-      button.textContent = 'Read Less';
+      fullStory.classList.add('hidden');
+      previewText.classList.remove('hidden');
+      readMoreButton.innerHTML = "Show Full Story";
     }
   }
 </script>
-
 
 <footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
   <!-- Spider Web Background Image -->

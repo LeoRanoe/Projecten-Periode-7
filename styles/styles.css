@@ -16,9 +16,6 @@
       opacity: 0;
       transform: scale(0.5) rotate(45deg);
       animation: fly 6s ease-in-out infinite;
-      .footer-link {
-    opacity: 0;
-    animation: fadeInLinks 0.5s ease-in-out forwards;
   }
   .footer-link:nth-child(1) { animation-delay: 0.3s; }
   .footer-link:nth-child(2) { animation-delay: 0.6s; }
@@ -36,7 +33,6 @@
   .social-icon {
     transition: transform 0.3s ease-in-out;
   }
-    }
 
     .bat1 { animation-delay: 0s; top: 20%; left: -50px; }
     .bat2 { animation-delay: 1s; top: 30%; left: -60px; transform: scale(0.7); }
@@ -94,21 +90,286 @@
   .social-icon {
     animation: soft-bounce 1.5s ease-in-out infinite;
   }  
-  .story-item {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  /*Landing page styling*/
+   /* Fade-in animation */
+   @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
-  .story-item:hover {
+  /* Slide-in from left */
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Fade-in up animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Zoom-in effect */
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Button animation */
+  @keyframes buttonHover {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+
+  .animate-slideInFromLeft {
+    animation: slideInFromLeft 1s ease-in-out forwards;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-in-out forwards;
+  }
+
+  .animate-zoomIn {
+    animation: zoomIn 1s ease-in-out forwards;
+  }
+
+  .shadow-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Optional: Hover effect for images */
+  .hover\:rotate-3:hover {
+    transform: rotate(3deg);
+  }
+
+  /* Improved Button Hover Effects */
+  .hover\:scale-110:hover {
+    animation: buttonHover 0.5s ease-in-out;
     transform: scale(1.05);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .focus\:ring-4:focus {
+    outline: none;
+    ring-width: 4px;
+    ring-color: #38b2ac;
+  }
+
+  .focus\:ring-opacity-50:focus {
+    ring-opacity: 0.5;
+  }
+
+  /* Active effect when button is pressed */
+  .active\:scale-95:active {
+    transform: scale(0.95);
+  }
+
+  .active\:bg-green-700:active {
+    background-color: #2f855a;
+  }
+
+  /* Hover effect for images */
+  .hover\:rotate-3:hover {
+    transform: rotate(3deg);
+  }
+
+  /*Genre filter styling*/
+  #genre-filter {
+    margin-bottom: 2rem; /* Adjusted bottom margin for better spacing */
+    max-width: 480px; /* Limit the width for a more compact look */
+    margin-left: auto;
+    margin-right: auto; /* Centered the element horizontally */
+  }
+  
+  #genre-filter label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.125rem; /* Slightly larger font for better readability */
+    color: #10b981; /* Green text for a fresh look */
+    font-weight: 600; /* Increased font weight for emphasis */
+    margin-bottom: 0.5rem; /* Space between label and select */
+    display: inline-block;
+  }
+  
+  #filter-genre {
+    padding: 0.75rem 1rem; /* More comfortable padding */
+    width: 100%; /* Make the select element fill the container */
+    max-width: 200px; /* Limiting max width to prevent it from becoming too wide */
+    background-color: #2d3748; /* Darker background for the dropdown */
+    color: #fff; /* White text color */
+    border-radius: 8px; /* Round corners for a smoother look */
+    font-size: 1rem; /* Standard font size for easy readability */
+    text-align: center; /* Center the text inside the dropdown */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease; /* Smooth transition for hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  }
+  
+  #filter-genre:hover {
+    background-color: #38a169; /* Slightly darker green on hover */
+  }
+  
+  #filter-genre:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 2px #10b981; /* Add a green border on focus */
+  }
+  
+  #filter-genre option {
+    padding: 0.75rem; /* Add padding to the options */
+    background-color: #2d3748; /* Background color for options */
+    color: #fff; /* White text for options */
+  }  
+  
+  #stories h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.5rem; /* Larger font size */
+    text-align: center;
+    font-weight: 700; /* More emphasis on the title */
+    color: #10b981; /* Green color for a fresh look */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    margin-bottom: 2rem; /* Increased bottom margin */
+  }
+  
+  #story-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid with a minimum width of 300px per column */
+    gap: 2rem; /* More consistent spacing between items */
+  }
+  
+  .story-item {
+    background-color: #2d3748; /* Dark background for each story card */
+    padding: 1.5rem; /* Add space inside the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+  }
+  
+  .story-item:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+  }
+  
+  .story-item h3 {
+    font-size: 1.5rem; /* Large title font size */
+    color: #e2e8f0; /* Light text color */
+    margin-bottom: 1rem; /* Space between title and content */
+    font-weight: 600; /* Bold for the title */
+  }
+  
+  .story-item p {
+    font-size: 1rem; /* Slightly smaller font size for the text */
+    color: #edf2f7; /* Lighter color for the story content */
+    margin-bottom: 1.5rem; /* Space before the button */
+  }
+  
+  .read-more-btn {
+    background-color: #38a169; /* Green background */
+    color: white;
+    padding: 8px 16px; /* Moderate padding */
+    font-size: 14px;
+    border-radius: 25px; /* Rounder corners */
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .read-more-btn:hover {
+    background-color: #48bb78; /* Slightly darker green */
+    transform: translateY(-3px); /* Lift effect */
+  }
+  
+  .read-more-btn:active {
+    transform: translateY(1px); /* Button pressed effect */
+    background-color: #38a169; /* Return to original color */
+  }
+  
+  @media (max-width: 640px) {
+    #stories h2 {
+      font-size: 2rem; /* Smaller title font size for mobile */
+    }
+  
+    .story-item {
+      padding: 1rem; /* Reduced padding on mobile */
+    }
+  }
+  
+  /*Storie Button styling*/
+  .read-more-btn {
+    background: linear-gradient(45deg, #4CAF50, #81C784); /* Gradient background */
+    color: white;
+    border: 2px solid #4CAF50; /* Border to match the background */
+    cursor: pointer;
+    padding: 6px 12px; /* Smaller padding */
+    text-align: center;
+    font-size: 12px; /* Smaller text size */
+    font-weight: bold;
+    border-radius: 20px; /* Slightly smaller border radius */
+    text-transform: uppercase; /* Make text uppercase */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+  .read-more-btn:hover {
+      background: linear-gradient(45deg, #66bb6a, #4CAF50); /* Slightly darker gradient on hover */
+      color: #fff;
+      transform: translateY(-3px); /* Slight lifting effect */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+  }
+
+  .read-more-btn:active {
+      transform: translateY(1px); /* Button "pressed" effect */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow when pressed */
   }
 
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 
-  .story-content {
-    max-height: 18rem;  /* Control the maximum height of the story */
-    overflow-y: auto;   /* Enable scrolling if content exceeds max height */
-    text-overflow: ellipsis;
+    /*Contact form Styling*/
+    input:invalid,
+  textarea:invalid {
+    border: 2px solid rgba(0, 255, 13, 0.27);
+  }
+
+  button:focus {
+    outline: 2px solid #4c51bf;
+  }
+
+  button:hover {
+    background-color: #38a169; /* Darker green */
+    transform: scale(1.02);
   }

@@ -59,55 +59,115 @@
   <li><a href="/dist/about.html" class="hover:text-green-500">About</a></li>
   <li><a href="/dist/contact.html" class="hover:text-green-500">Contact</a></li>
 </ul>
-<section class="flex flex-col items-center justify-center px-8 py-16 lg:flex-row lg:px-20">
+<section class="flex flex-col items-center justify-center px-6 py-16 lg:px-16 lg:py-24 lg:flex-row">
   <!-- Contact Form -->
-<div class="bg-gray-800 bg-opacity-70 p-8 rounded-lg shadow-lg w-full max-w-lg lg:w-1/2">
-  <form id="contact-form" class="space-y-4" onsubmit="sendEmail(event)">
-    <div>
-      <label class="block text-gray-300">Email address</label>
-      <input type="email" id="user_email" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required>
-    </div>
-    <div>
-      <label class="block text-gray-300">Name</label>
-      <input type="text" id="user_name" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required>
-    </div>
-    <div>
-      <label class="block text-gray-300">Message</label>
-      <textarea id="user_message" class="w-full h-32 px-4 py-2 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
-    </div>
-    <button type="submit" class="w-full bg-green-500 text-gray-900 font-semibold py-2 rounded-lg hover:bg-green-600">Send</button>
-  </form>
-</div>
-
-<script>
-  function sendEmail(event) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
+  <div class="bg-gray-800 bg-opacity-80 p-10 rounded-xl shadow-xl w-full max-w-lg lg:w-1/2 transform transition duration-500 ease-in-out hover:scale-105">
+    <form id="contact-form" class="space-y-6" onsubmit="sendMail(event)">
+      <!-- Honeypot Field (Hidden) -->
+      <input type="text" id="honeypot" name="honeypot" style="display:none;">
     
-    // Collect form data
-    let parms = {
-      name: document.getElementById("user_name").value,
-      Email: document.getElementById("user_email").value,
-      message: document.getElementById("user_message").value
-    };
-
-    // Send the email using EmailJS
-    emailjs.send("service_5vephhk", "template_2lnbxx8", parms)
-      .then(function(response) {
-        alert("Email Sent!!!");
-      }, function(error) {
-        console.error("Error sending email:", error);
-        alert("There was an error sending your message. Please try again.");
-      });
-  }
-</script>
-
-  <!-- Vertical Divider and Text -->
-  <div class="flex flex-col items-center mt-8 lg:mt-0 lg:ml-12 lg:border-l lg:border-gray-700 lg:pl-12">
-    <h1 class="text-5xl font-bold text-white" style="font-family: 'Jolly Lodger', serif;">Contact us</h1>
-    <img src="/images/background 4.png" alt="Spooky Mask" class="hidden lg:block mt-6 w-48 opacity-70">
+      <!-- Email Address -->
+      <div class="transform transition duration-500 ease-in-out hover:scale-105">
+        <label for="user_email" class="block text-gray-300 text-sm font-medium">Email Address</label>
+        <input
+          type="email"
+          id="user_email"
+          name="email"
+          class="w-full px-4 py-3 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transform transition duration-300 ease-in-out hover:scale-105"
+          required
+        />
+      </div>
+    
+      <!-- Name -->
+      <div class="transform transition duration-500 ease-in-out hover:scale-105">
+        <label for="user_name" class="block text-gray-300 text-sm font-medium">Name</label>
+        <input
+          type="text"
+          id="user_name"
+          name="name"
+          class="w-full px-4 py-3 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transform transition duration-300 ease-in-out hover:scale-105"
+          required
+        />
+      </div>
+    
+      <!-- Subject -->
+      <div class="transform transition duration-500 ease-in-out hover:scale-105">
+        <label for="user_subject" class="block text-gray-300 text-sm font-medium">Subject</label>
+        <input
+          type="text"
+          id="user_subject"
+          name="subject"
+          class="w-full px-4 py-3 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transform transition duration-300 ease-in-out hover:scale-105"
+          required
+        />
+      </div>
+    
+      <!-- Message -->
+      <div class="transform transition duration-500 ease-in-out hover:scale-105">
+        <label for="user_message" class="block text-gray-300 text-sm font-medium">Message</label>
+        <textarea
+          id="user_message"
+          name="message"
+          class="w-full h-32 px-4 py-3 rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transform transition duration-300 ease-in-out hover:scale-105"
+          required
+        ></textarea>
+      </div>
+    
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-green-500 text-gray-900 font-semibold py-3 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 transform transition duration-300 ease-in-out hover:scale-105"
+      >
+        Send
+      </button>
+    </form>
+    
+    <!-- Success Message -->
+    <div id="success-message" class="hidden text-green-500 mt-4 text-center font-medium transform transition duration-300 ease-in-out opacity-0 animate-fadeIn"></div>
   </div>
-  </section>
+
+  <!-- Vertical Divider and Text (Now beside the form) -->
+  <div class="flex flex-col items-center lg:ml-12 lg:border-l lg:border-gray-700 lg:pl-12 lg:w-1/2 mt-12 lg:mt-0">
+    <h1 class="text-5xl font-bold text-white text-center lg:text-left mb-4 transform transition duration-500 ease-in-out hover:scale-105" style="font-family: 'Jolly Lodger', serif;">Contact Us</h1>
+    <p class="text-gray-300 text-lg text-center lg:text-left mb-6 opacity-0 animate-fadeIn transform transition duration-500 ease-in-out delay-100">We would love to hear from you! Reach out to us through the form.</p>
+    <img src="/images/background 4.png" alt="Spooky Mask" class="hidden lg:block mt-6 w-48 opacity-70 transition duration-500 ease-in-out transform hover:scale-110">
+  </div>
+</section>
+
+<!-- Add CSS for animations -->
+<style>
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+</style>
+
+<!-- Add CSS for animations -->
+<style>
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+</style>
+
   <footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
     <!-- Spider Web Background Image -->
     <div class="absolute top-0 right-0 h-80 w-80 bg-no-repeat bg-contain opacity-50" style="background-image: url('/images/spiderweb1.png');"></div>
