@@ -48,190 +48,272 @@
   <li><a href="/dist/about.html" class="hover:text-green-500">About</a></li>
   <li><a href="/dist/contact.html" class="hover:text-green-500">Contact</a></li>
 </ul>
-  
-<main class="flex flex-col items-center justify-center px-6 md:px-12 py-8">
-  <!-- Text Section -->
-  <div class="w-full md:w-3/4 text-center space-y-6">
-  
-    <!-- Container for both headings centered -->
-    <div class="flex items-center justify-center space-x-4">
-      <h1 class="text-6xl md:text-5xl font-bold text-green-100" style="font-family: 'Libre Baskerville', serif;">About</h1>
-      <h1 class="text-8xl md:text-7xl font-bold text-green-500" style="font-family: 'Jolly Lodger', cursive;">Sma Tori</h1>
-    </div>
-
-    <!-- Container for both ghost icons and paragraph, centered -->
-    <div class="flex items-center justify-center space-x-4 mt-4">
-      <!-- Left ghost icon -->
-      <img src="/images/Aboutpage/ghost fay.png" alt="Ghost Icon" class="w-20 h-25 ghost-img">
-      <img src="/images/Aboutpage/ghost rico.png" alt="Ghost Icon" class="w-20 h-25 ghost-img">
-
-      <!-- Paragraph Section -->
-      <p class="text-white shadow-text summary-text max-w-6xl md:max-w-7xl lg:max-w-8xl px-6">
-        Welkom bij Sma Tori, dé plek waar Surinaamse verhalen tot leven komen! Ontwikkeld door de getalenteerde ICT-studenten van NATIN, brengen we de heetste tories en sappigste gos' uit de hele gemeenschap. Hier ontdek je wat er speelt, wat mensen bezighoudt en wat je echt niet mag missen.
-        Pak je fatu en geniet van de échte vibes van Sranan – Sma Tori, waar wij de tori voor en met elkaar delen!
-      </p>
-
-      <!-- Right ghost icon -->
-      <img src="/images/Aboutpage/ghost mighi.png" alt="Ghost Icon" class="w-20 h-25 ghost-img">
-      <img src="/images/Aboutpage/ghost leo.png" alt="Ghost Icon" class="w-20 h-25 ghost-img">
-    </div>
-  </div>
-</main>
-
-<!-- Add this style block in your HTML or in a separate CSS file -->
 <style>
-  /* Define the floating animation */
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(-10px);
-      opacity: 0.7;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  body {
+      background: linear-gradient(135deg, #0a0a1a, #1a2a3a);
+      color: #e0e0e0;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
   }
 
-  /* Apply the animation to the ghost images */
+  #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  }
+
   .ghost-img {
-    animation: float 3s ease-in-out infinite;
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
   }
 
-  /* Add a small delay for the right ghosts to create a staggered effect */
-  .ghost-img:nth-child(2),
-  .ghost-img:nth-child(4) {
-    animation-delay: 1s;
+  .ghost-img:hover {
+      transform: translateY(-20px) rotate(5deg) scale(1.1);
+      filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.7));
   }
-</style>
 
-
-
-  <!-- "ABOUT US" Heading -->
-  <div class="text-center mb-8 border-b-4 border-green-300 pb-4">
-    <h1 class="text-4xl md:text-3xl font-bold text-green-300" style="font-family: 'Libre Baskerville', serif;">ABOUT US</h1>
-  </div>
-
-  <!-- Grid of 4 Columns with increased top margin -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 mt-28">
-    
-        <!-- Column 1 -->
-        <div class="text-center relative">
-          <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
-            <!-- Icon with toggle functionality -->
-            <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
-              <img src="/images/Aboutpage/gravestone rico.png" alt="Icon 1" class="gravestone-img mx-auto mb-4">
-            </div>
-
-        <!-- Hidden Information -->
-        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
-          <p class="mb-2"><strong>Name:</strong> ManvandehuK</p>
-          <p class="mb-2"><strong>Years lived:</strong> 81</p>
-          <p class="mb-2"><strong>Height:</strong> 6 </p> 
-          <p class="mb-2"><strong>Cause of death:</strong>Hepatitis B</p> 
-          <p><strong>Description:</strong> I like taking out my rage on sandbags and i like popeyes fries.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Column 2 -->
-    <div class="text-center relative">
-      <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
-        <!-- Icon with toggle functionality -->
-        <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
-          <img src="/images/Aboutpage/gravestone leo.png" alt="Icon 2" class="gravestone-img mx-auto mb-4">
-        </div>
-        <!-- Hidden Information -->
-        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
-          <p class="mb-2"><strong>Name:</strong> Regedek</p>
-          <p class="mb-2"><strong>Years lived:</strong> 69</p>
-          <p class="mb-2"><strong>Height:</strong> 6'1 (I wish)</p>
-          <p class="mb-2"><strong>Cause of death:</strong> Simping too much</p>
-          <p><strong>Description:</strong>I am just a chill guy</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Column 3 -->
-    <div class="text-center relative">
-      <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
-        <!-- Icon with toggle functionality -->
-        <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
-          <img src="/images/Aboutpage/gravestone mighi.png" alt="Icon 3" class="gravestone-img mx-auto mb-4">
-        </div>
-
-        <!-- Hidden Information -->
-        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
-          <p class="mb-2"><strong>Name:</strong> YourAssaulter</p>
-          <p class="mb-2"><strong>Years lived:</strong> 19</p>
-          <p class="mb-2"><strong>Height:</strong> 5'1</p>
-          <p class="mb-2"><strong>Cause of death:</strong> Natin</p>
-          <p><strong>Description:</strong> I like sitting in the dark and touching people</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center relative">
-      <div class="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg">
-        <!-- Icon with toggle functionality -->
-        <div class="icon-container cursor-pointer" onclick="toggleInfo(this)">
-          <img src="/images/Aboutpage/gravestone fay.png" alt="Icon 4" class="gravestone-img mx-auto mb-4">
-        </div>
-
-        <!-- Hidden Information -->
-        <div class="info-container bg-black bg-opacity-70 text-white p-6 rounded-lg hidden">
-          <p class="mb-2"><strong>Name:</strong> DinoTendiezz</p>
-          <p class="mb-2"><strong>Years lived:</strong> 44</p>
-          <p class="mb-2"><strong>Height:</strong> 4'11</p>
-          <p class="mb-2"><strong>Cause of death:</strong> Schizophrenia</p>
-          <p><strong>Description:</strong> I like reading love stories about 2 men and I love Chinese anime.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- JavaScript for Toggle Functionality -->
-<script>
-  function toggleInfo(iconElement) {
-    // Get the next sibling of the icon container, which is the info container
-    var infoContainer = iconElement.nextElementSibling;
-
-    // Toggle the 'hidden' class to show/hide the information
-    infoContainer.classList.toggle("hidden");
+  .gravestone-card {
+      perspective: 1000px;
+      transition: all 0.5s ease;
   }
-</script>
 
-<!-- Custom CSS to make gravestone images larger and extend outside the box -->
-<style>
-  /* Make the gravestone images larger and let them stick out of the white box */
   .gravestone-img {
-    position: absolute;
-    top: -115px; /* Keep image position above the box */
-    left: 50%;
-    transform: translateX(-50%); /* Center the image horizontally */
-    width: 320px; /* Increase image size */
-    height: 300px;
-    z-index: 10; /* Ensure image stays on top of other content */
+      transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      will-change: transform, filter;
   }
 
-  /* Ensure the columns have relative positioning */
-  .text-center.relative {
-    position: relative;
+  .gravestone-card:hover {
+      transform: rotateY(10deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
 
-  /* Increase padding to ensure enough space for the image to stick out */
-  .bg-white {
-    padding-top: 150px; /* Increase padding to push the white box further down */
+  .gravestone-img:hover {
+      transform: translateY(-15px) rotate(5deg) scale(1.1);
+      filter: 
+          brightness(120%) 
+          saturate(130%) 
+          drop-shadow(0 0 15px rgba(0, 255, 255, 0.5));
+  }
+
+  .info-container {
+      background: rgba(20, 40, 60, 0.7);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      transition: all 0.5s ease;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+  }
+
+  .info-container.active {
+      opacity: 1;
+      max-height: 500px;
+      border-color: rgba(0, 255, 255, 0.5);
+  }
+
+  .glitch {
+      position: relative;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .glitch::before,
+  .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+  }
+
+  .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+
+  .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 blue;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 5s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim {
+      0% { clip: rect(33px, 9999px, 20px, 0); }
+      5% { clip: rect(71px, 9999px, 54px, 0); }
+      10% { clip: rect(64px, 9999px, 15px, 0); }
+  }
+
+  @keyframes glitch-anim2 {
+      0% { clip: rect(61px, 9999px, 34px, 0); }
+      5% { clip: rect(51px, 9999px, 44px, 0); }
+      10% { clip: rect(24px, 9999px, 55px, 0); }
   }
 </style>
+</head>
+<body>
+<div id="particles-js"></div>
 
+<div class="container mx-auto px-4 py-8 relative z-10">
+  <header class="text-center mb-12">
+      <div class="header-container flex items-center justify-center space-x-4 mb-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-green-100" style="font-family: 'Libre Baskerville', serif;">About</h1>
+        <h1 class="text-6xl md:text-7xl font-bold text-green-500" style="font-family: 'Jolly Lodger', cursive;">Sma Tori</h1>
+      </div>
 
+      <div class="ghost-container flex flex-wrap items-center justify-center gap-4">
+          <div class="ghost-wrapper flex items-center space-x-4">
+              <img src="/images/Aboutpage/ghost fay.png" alt="Ghost Icon" class="w-16 h-20 ghost-img transform transition-all">
+              <img src="/images/Aboutpage/ghost rico.png" alt="Ghost Icon" class="w-16 h-20 ghost-img transform transition-all">
+          </div>
+
+          <p class="summary-text max-w-4xl mx-auto text-white px-6 bg-black/20 rounded-xl p-4">
+              Welkom bij Sma Tori, dé plek waar Surinaamse verhalen tot leven komen! Ontwikkeld door de getalenteerde ICT-studenten van NATIN, brengen we de heetste tories en sappigste gos' uit de hele gemeenschap. Hier ontdek je wat er speelt, wat mensen bezighoudt en wat je echt niet mag missen.
+              Pak je fatu en geniet van de échte vibes van Sranan – Sma Tori, waar wij de tori voor en met elkaar delen!
+          </p>
+
+          <div class="ghost-wrapper flex items-center space-x-4">
+              <img src="/images/Aboutpage/ghost mighi.png" alt="Ghost Icon" class="w-16 h-20 ghost-img transform transition-all">
+              <img src="/images/Aboutpage/ghost leo.png" alt="Ghost Icon" class="w-16 h-20 ghost-img transform transition-all">
+          </div>
+      </div>
+  </header>
+
+  <section class="mt-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-green-300 mb-12" style="font-family: 'Libre Baskerville', serif;">
+      ABOUT US
+  </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+          <!-- Gravestone 1 -->
+          <div class="gravestone-card relative group">
+              <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 pt-24 text-center transition-all duration-300 hover:bg-white/20">
+                  <img src="/images/Aboutpage/gravestone rico.png" 
+                       alt="Gravestone 1" 
+                       class="gravestone-img absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-auto z-10">
+                  
+                  <div class="info-toggle cursor-pointer" onclick="toggleInfo(this)">
+                      <h3 class="text-xl font-semibold text-green-300 mb-2">ManvandehuK</h3>
+                      <p class="text-white/70">Click to reveal story</p>
+                  </div>
+
+                  <div class="info-container mt-4 text-sm">
+                      <p class="mb-2"><strong>Years lived:</strong> 81</p>
+                      <p class="mb-2"><strong>Height:</strong> 6</p>
+                      <p class="mb-2"><strong>Cause of death:</strong> Hepatitis B</p>
+                      <p><strong>Description:</strong> I like taking out my rage on sandbags and i like popeyes fries.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Gravestone 2 -->
+          <div class="gravestone-card relative group">
+              <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 pt-24 text-center transition-all duration-300 hover:bg-white/20">
+                  <img src="/images/Aboutpage/gravestone leo.png" 
+                       alt="Gravestone 2" 
+                       class="gravestone-img absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-auto z-10">
+                  
+                  <div class="info-toggle cursor-pointer" onclick="toggleInfo(this)">
+                      <h3 class="text-xl font-semibold text-green-300 mb-2">Regedek</h3>
+                      <p class="text-white/70">Click to reveal story</p>
+                  </div>
+
+                  <div class="info-container mt-4 text-sm">
+                      <p class="mb-2"><strong>Years lived:</strong> 69</p>
+                      <p class="mb-2"><strong>Height:</strong> 6'1 (I wish)</p>
+                      <p class="mb-2"><strong>Cause of death:</strong> Simping too much</p>
+                      <p><strong>Description:</strong> I am just a chill guy</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Gravestone 3 -->
+          <div class="gravestone-card relative group">
+              <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 pt-24 text-center transition-all duration-300 hover:bg-white/20">
+                  <img src="/images/Aboutpage/gravestone mighi.png" 
+                       alt="Gravestone 3" 
+                       class="gravestone-img absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-auto z-10">
+                  
+                  <div class="info-toggle cursor-pointer" onclick="toggleInfo(this)">
+                      <h3 class="text-xl font-semibold text-green-300 mb-2">YourAssaulter</h3>
+                      <p class="text-white/70">Click to reveal story</p>
+                  </div>
+
+                  <div class="info-container mt-4 text-sm">
+                      <p class="mb-2"><strong>Years lived:</strong> 19</p>
+                      <p class="mb-2"><strong>Height:</strong> 5'1</p>
+                      <p class="mb-2"><strong>Cause of death:</strong> Natin</p>
+                      <p><strong>Description:</strong> I like sitting in the dark and touching people</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Gravestone 4 -->
+          <div class="gravestone-card relative group">
+              <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 pt-24 text-center transition-all duration-300 hover:bg-white/20">
+                  <img src="/images/Aboutpage/gravestone fay.png" 
+                       alt="Gravestone 4" 
+                       class="gravestone-img absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-auto z-10">
+                  
+                  <div class="info-toggle cursor-pointer" onclick="toggleInfo(this)">
+                      <h3 class="text-xl font-semibold text-green-300 mb-2">DinoTendiezz</h3>
+                      <p class="text-white/70">Click to reveal story</p>
+                  </div>
+
+                  <div class="info-container mt-4 text-sm">
+                      <p class="mb-2"><strong>Years lived:</strong> 44</p>
+                      <p class="mb-2"><strong>Height:</strong> 4'11</p>
+                      <p class="mb-2"><strong>Cause of death:</strong> Schizophrenia</p>
+                      <p><strong>Description:</strong> I like reading love stories about 2 men and I love Chinese anime.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<script>
+function toggleInfo(element) {
+const infoContainer = element.nextElementSibling;
+const gravestoneCard = element.closest('.gravestone-card');
+const gravestoneImg = gravestoneCard.querySelector('.gravestone-img');
+
+// Toggle active class
+infoContainer.classList.toggle('active');
+
+// Animate gravestone
+if (infoContainer.classList.contains('active')) {
+  gravestoneImg.style.transform = 'translateY(-30px) rotate(10deg) scale(1.1)';
+  gravestoneImg.style.filter = 'brightness(120%) saturate(130%)';
+} else {
+  gravestoneImg.style.transform = 'translateY(0) rotate(0) scale(1)';
+  gravestoneImg.style.filter = 'brightness(100%) saturate(100%)';
+}
+}
+
+// Optional: Add hover effects
+document.querySelectorAll('.gravestone-card').forEach(card => {
+const gravestoneImg = card.querySelector('.gravestone-img');
+const infoToggle = card.querySelector('.info-toggle');
+
+infoToggle.addEventListener('mouseenter', () => {
+  gravestoneImg.style.transform = 'translateY(-10px) rotate(3deg)';
+});
+
+infoToggle.addEventListener('mouseleave', () => {
+  if (!card.querySelector('.info-container').classList.contains('active')) {
+      gravestoneImg.style.transform = 'translateY(0) rotate(0)';
+  }
+});
+});
+</script>
 <footer class="bg-gray-800 text-gray-400 py-10 relative overflow-hidden">
   <!-- Spider Web Background Image -->
   <div class="absolute top-0 right-0 h-80 w-80 bg-no-repeat bg-contain opacity-50" style="background-image: url('/images/spiderweb1.png');"></div>

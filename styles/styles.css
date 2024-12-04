@@ -358,6 +358,51 @@
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+/*about page stylin*/
+.story-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100px;
+}
+
+.edit-btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+.read-more-btn {
+  color: rgba(255, 255, 255, 0.701);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.read-more-btn:hover {
+  background-color: #2980b9;
+}
 
     /*Contact form Styling*/
     input:invalid,
